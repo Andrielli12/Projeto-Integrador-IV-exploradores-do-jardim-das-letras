@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Exploradores do Jardim das Letras</title>
     <style>
         /* RESET E ESTILOS GLOBAIS */
@@ -361,8 +361,8 @@
         }
 
         @keyframes voar {
-            from { left: -5%; }
-            to { left: 105%; }
+            from { left: 105%; }
+            to { left: -5%; }
         }
 
         @keyframes voarBorboleta {
@@ -377,6 +377,90 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+
+        /* RESPONSIVIDADE PARA CELULAR */
+        @media (max-width: 600px) {
+            .instrucao {
+                font-size: 1rem;
+                padding: 8px 12px;
+            }
+            .instrucao span {
+                font-size: 1.5rem;
+            }
+
+            /* Jardim */
+            .arvore {
+                font-size: 4rem;
+            }
+            .flor {
+                font-size: 2rem;
+            }
+            .nuvem {
+                font-size: 3rem;
+            }
+            .passaro {
+                font-size: 1.8rem;
+            }
+            .borboleta {
+                font-size: 1.5rem;
+            }
+            .botoes-jardim {
+                gap: 10px;
+            }
+            .btn-jardim {
+                padding: 10px 20px;
+                font-size: 1.5rem;
+                border-width: 3px;
+            }
+
+            /* Cards */
+            .cards-grid {
+                gap: 10px;
+            }
+            .card {
+                padding: 10px;
+                font-size: 3rem;
+            }
+            .card.completado::after {
+                font-size: 1.5rem;
+            }
+            .btn-voltar-jardim {
+                font-size: 1.2rem;
+                padding: 6px 12px;
+            }
+
+            /* Tela palavra */
+            .cenario-palavra {
+                font-size: 5rem;
+            }
+            .texto-explicativo {
+                font-size: 1.2rem;
+                padding: 10px;
+                margin: 10px;
+            }
+            .letra-input {
+                width: 40px;
+                height: 40px;
+                font-size: 2rem;
+            }
+            .botoes-palavra {
+                gap: 8px;
+            }
+            .botao {
+                padding: 10px 20px;
+                font-size: 1.2rem;
+            }
+            .mensagem-feedback {
+                font-size: 1.2rem;
+            }
+
+            /* Medalha */
+            .medalha {
+                padding: 20px;
+                font-size: 1.2rem;
+                border-width: 3px;
+            }
         }
     </style>
     <!-- Fonte Google -->
@@ -445,7 +529,7 @@
             { nome: "FRUTA", acentos: "FRUTA", letras: 5, borda: "#FF4500", emoji: "🍎", texto: "Venho da natureza e posso ser colhida para comer. Sou doce e saudável. Maçã, banana e laranja são exemplos de mim. Quem sou eu?", cenario: "🍎" },
             { nome: "ARVORE", acentos: "ÁRVORE", letras: 6, borda: "#228B22", emoji: "🌳", texto: "Sou bem grande e vivo muitos anos. Minhas raízes me seguram firme na terra. Meus galhos são cheios de folhas e fazem uma sombra fresquinha. Os pássaros gostam de fazer seus ninhos nos meus galhos. Quem sou eu?", cenario: "🌳" },
             { nome: "ABELHA", acentos: "ABELHA", letras: 6, borda: "#FFD700", emoji: "🐝", texto: "Sou pequena, tenho asas e listras amarelas e pretas. Sou conhecida pelo meu zumbido. Visito as flores para pegar néctar, que vira mel, e também ajudo as flores a se transformarem em frutos. Quem sou eu?", cenario: "🐝" },
-            { nome: "PASSARO", acentos: "PÁSSARO", letras: 6, borda: "#FFA500", emoji: "🐦", texto: "Tenho penas, asas e bico. Gosto de voar livre e fazer ninhos nas árvores. Canto bem cedo pela manhã. Quem sou eu?", cenario: "🐦" },
+            { nome: "PASSARO", acentos: "PÁSSARO", letras: 7, borda: "#FFA500", emoji: "🐦", texto: "Tenho penas, asas e bico. Gosto de voar livre e fazer ninhos nas árvores. Canto bem cedo pela manhã. Quem sou eu?", cenario: "🐦" },
             { nome: "SEMENTE", acentos: "SEMENTE", letras: 7, borda: "#8B4513", emoji: "🌱", texto: "Pareço um grão pequeno, mas guardo uma planta dentro de mim. Se me plantarem na terra, me regarem e o sol me aquecer, eu vou brotar e virar uma planta grande. Quem sou eu?", cenario: "🌱" },
             { nome: "RECICLAR", acentos: "RECICLAR", letras: 8, borda: "#32CD32", emoji: "♻️", texto: "Separo o lixo por cores. Azul para papel, vermelho para plástico, verde para vidro e amarelo para metal. Assim podemos transformar o lixo em uma coisa nova. Como se chama essa atitude?", cenario: "♻️" }
         ];
