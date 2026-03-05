@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploradores do Jardim das Letras</title>
+    <style>
+        /* RESET E ESTILOS GLOBAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #87CEEB 0%, #98FB98 100%);
+            overflow: hidden;
+        }
+
+        /* TELAS */
+        .tela {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s;
+        }
+
+        .tela.ativa {
+            display: flex;
+        }
+
+        /* INSTRUÇÕES */
+        .instrucao {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            margin: 10px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 80%;
+            z-index: 20;
+        }
+
+        .instrucao span {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        /* TELA 1 - JARDIM ENCANTADO */
+        #tela1 {
+            background: linear-gradient(to bottom, #87CEEB 0%, #90EE90 70%);
+            position: relative;
+        }
+
+        .jardim {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .arvore {
+            position: absolute;
+            bottom: 20%;
+            font-size: 8rem;
+            animation: balancar 3s infinite ease-in-out;
+        }
+
+        .arvore.esquerda {
+            left: 5%;
+        }
+
+        .arvore.direita {
+            right: 5%;
+        }
+
+        .flor {
+            position: absolute;
+            bottom: 15%;
+            font-size: 3rem;
+            animation: balancar 2.5s infinite alternate;
+        }
+
+        .flor1 {
+            left: 20%;
+            animation-delay: 0s;
+        }
+        .flor2 {
+            left: 45%;
+            animation-delay: 0.5s;
+        }
+        .flor3 {
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .nuvem {
+            position: absolute;
+            font-size: 5rem;
+            opacity: 0.7;
+            animation: moverNuvem linear infinite;
+        }
+
+        .nuvem1 {
+            top: 10%;
+            left: -10%;
+            animation-duration: 30s;
+        }
+        .nuvem2 {
+            top: 20%;
+            left: -15%;
+            animation-duration: 45s;
+            font-size: 4rem;
+        }
+
+        .passaro {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: voar linear infinite;
+        }
+
+        .passaro1 {
+            top: 15%;
+            left: -5%;
+            animation-duration: 20s;
+        }
+        .passaro2 {
+            top: 30%;
+            left: -10%;
+            animation-duration: 25s;
+            font-size: 2rem;
+        }
+
+        .borboleta {
+            position: absolute;
+            font-size: 2rem;
+            animation: voarBorboleta 8s infinite alternate ease-in-out;
+        }
+
+        .borboleta1 {
+            top: 40%;
+            left: 10%;
+            animation-duration: 10s;
+        }
+        .borboleta2 {
+            top: 60%;
+            left: 30%;
+            animation-duration: 12s;
+        }
+        .borboleta3 {
+            top: 50%;
+            left: 70%;
+            animation-duration: 9s;
+        }
+
+        .botoes-jardim {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .btn-jardim {
+            padding: 20px 40px;
+            font-size: 2.5rem;
+            border: 5px solid;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-jogar {
+            background: #FFD700;
+            border-color: #FF8C00;
+            animation: pulsar 2s infinite;
+        }
+
+        .btn-reset {
+            background: #FF6347;
+            border-color: #8B0000;
+        }
+
+        .btn-jardim:hover {
+            transform: scale(1.05);
+        }
+
+        /* TELA 2 - CARDS */
+        #tela2 {
+            background: #2e8b57;
+            justify-content: space-around;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            width: 90%;
+            margin: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            font-size: 4rem;
+            border: 5px solid;
+            transition: transform 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card.completado::after {
+            content: "✅";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 2rem;
+        }
+
+        .btn-voltar-jardim {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            background: #87CEEB;
+            border: 2px solid #4682B4;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* TELA 3 - PALAVRA */
+        #tela3 {
+            background: #f0e68c;
+            justify-content: space-around;
+        }
+
+        .cenario-palavra {
+            font-size: 8rem;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .texto-explicativo {
+            font-size: 1.8rem;
+            background: rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .area-digitacao {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .letra-input {
+            width: 60px;
+            height: 60px;
+            font-size: 2.5rem;
+            text-align: center;
+            border: 3px solid #4682B4;
+            border-radius: 10px;
+            background: white;
+            text-transform: uppercase;
+        }
+
+        .botoes-palavra {
+            display: flex;
+            gap: 15px;
+            margin: 20px;
+        }
+
+        .botao {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .botao.verificar {
+            background: #32CD32;
+        }
+        .botao.tentar {
+            background: #FFA500;
+        }
+        .botao.voltar {
+            background: #1E90FF;
+        }
+
+        .botao:hover {
+            filter: brightness(0.9);
+            transform: scale(1.05);
+        }
+
+        .mensagem-feedback {
+            font-size: 2rem;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .medalha {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: gold;
+            padding: 40px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 2rem;
+            border: 5px solid orange;
+            box-shadow: 0 0 50px gold;
+            z-index: 100;
+        }
+
+        /*animações */
+        @keyframes balancar {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(3deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes moverNuvem {
+            from { left: -10%; }
+            to { left: 110%; }
+        }
+
+        @keyframes voar {
+            from { left: -5%; }
+            to { left: 105%; }
+        }
+
+        @keyframes voarBorboleta {
+            0% { transform: translate(0,0) rotate(0deg); }
+            25% { transform: translate(30px, -20px) rotate(5deg); }
+            50% { transform: translate(60px, 10px) rotate(-5deg); }
+            75% { transform: translate(90px, -10px) rotate(3deg); }
+            100% { transform: translate(120px, 20px) rotate(0deg); }
+        }
+
+        @keyframes pulsar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <!-- Fonte Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- TELA 1 - JARDIM -->
+    <div id="tela1" class="tela ativa">
+        <div class="jardim">
+            <div class="instrucao" style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%);">
+                <span>🌻</span> Clique em JOGAR para começar ou em RESET para recomeçar do zero!
+            </div>
+            <div class="arvore esquerda">🌳</div>
+            <div class="arvore direita">🌳</div>
+            <div class="flor flor1">🌸</div>
+            <div class="flor flor2">🌼</div>
+            <div class="flor flor3">🌻</div>
+            <div class="nuvem nuvem1">☁️</div>
+            <div class="nuvem nuvem2">☁️</div>
+            <div class="passaro passaro1">🐦</div>
+            <div class="passaro passaro2">🐦</div>
+            <div class="borboleta borboleta1">🦋</div>
+            <div class="borboleta borboleta2">🦋</div>
+            <div class="borboleta borboleta3">🦋</div>
+            <div class="botoes-jardim">
+                <button class="btn-jardim btn-jogar" id="btnJogar">JOGAR</button>
+                <button class="btn-jardim btn-reset" id="btnReset">RESET</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA 2 - CARDS -->
+    <div id="tela2" class="tela">
+        <button class="btn-voltar-jardim" id="btnVoltarJardim">🌿 Voltar ao Jardim</button>
+        <div class="instrucao">
+            <span>🔍</span> Escolha um card para descobrir a palavra secreta!
+        </div>
+        <div class="cards-grid" id="cardsGrid"></div>
+    </div>
+
+    <!-- TELA 3 - PALAVRA (dinâmica) -->
+    <div id="tela3" class="tela">
+        <div class="instrucao">
+            <span>✏️</span> Leia a dica e digite a palavra nos quadrados. Depois clique em VERIFICAR!
+        </div>
+        <div class="cenario-palavra" id="cenarioPalavra">🌳</div>
+        <div class="texto-explicativo" id="textoExplicativo"></div>
+        <div class="area-digitacao" id="areaDigitacao"></div>
+        <div class="botoes-palavra">
+            <button class="botao verificar" id="btnVerificar">VERIFICAR</button>
+            <button class="botao tentar" id="btnTentar">TENTAR NOVAMENTE</button>
+            <button class="botao voltar" id="btnVoltarCards">VOLTAR AOS CARDS</button>
+        </div>
+        <div class="mensagem-feedback" id="mensagemFeedback"></div>
+    </div>
+
+    <!-- MEDALHA (invisível inicialmente) -->
+    <div id="medalha" class="medalha" style="display: none;">🏅 Explorador do Jardim das Letras</div>
+
+    <script>
+        // DADOS DAS PALAVRAS (placeholders)
+        const palavras = [
+            { nome: "SOL", acentos: "SOL", letras: 3, borda: "#FFD700", emoji: "☀️", texto: "Brilho forte no céu durante o dia. Meu calor aquece a Terra e ajuda as plantas a crescerem. Quando vou embora, a noite chega. Quem sou eu?", cenario: "☀️" },
+            { nome: "FLOR", acentos: "FLOR", letras: 4, borda: "#FF69B4", emoji: "🌸", texto: "Tenho pétalas coloridas e um cheiro gostoso. Moro em jardins e campos. As abelhas vêm me visitar. Preciso de água e sol para não murchar. Quem sou eu?", cenario: "🌸" },
+            { nome: "AGUA", acentos: "ÁGUA", letras: 4, borda: "#00BFFF", emoji: "💧", texto: "Caio do céu quando chove. Corro nos rios e nas cachoeiras. As plantas bebem de mim para crescer. Os animais e as pessoas também precisam de mim para viver. Quem sou eu?", cenario: "💧" },
+            { nome: "FRUTA", acentos: "FRUTA", letras: 5, borda: "#FF4500", emoji: "🍎", texto: "Venho da natureza e posso ser colhida para comer. Sou doce e saudável. Maçã, banana e laranja são exemplos de mim. Quem sou eu?", cenario: "🍎" },
+            { nome: "ARVORE", acentos: "ÁRVORE", letras: 6, borda: "#228B22", emoji: "🌳", texto: "Sou bem grande e vivo muitos anos. Minhas raízes me seguram firme na terra. Meus galhos são cheios de folhas e fazem uma sombra fresquinha. Os pássaros gostam de fazer seus ninhos nos meus galhos. Quem sou eu?", cenario: "🌳" },
+            { nome: "ABELHA", acentos: "ABELHA", letras: 6, borda: "#FFD700", emoji: "🐝", texto: "Sou pequena, tenho asas e listras amarelas e pretas. Sou conhecida pelo meu zumbido. Visito as flores para pegar néctar, que vira mel, e também ajudo as flores a se transformarem em frutos. Quem sou eu?", cenario: "🐝" },
+            { nome: "PASSARO", acentos: "PÁSSARO", letras: 6, borda: "#FFA500", emoji: "🐦", texto: "Tenho penas, asas e bico. Gosto de voar livre e fazer ninhos nas árvores. Canto bem cedo pela manhã. Quem sou eu?", cenario: "🐦" },
+            { nome: "SEMENTE", acentos: "SEMENTE", letras: 7, borda: "#8B4513", emoji: "🌱", texto: "Pareço um grão pequeno, mas guardo uma planta dentro de mim. Se me plantarem na terra, me regarem e o sol me aquecer, eu vou brotar e virar uma planta grande. Quem sou eu?", cenario: "🌱" },
+            { nome: "RECICLAR", acentos: "RECICLAR", letras: 8, borda: "#32CD32", emoji: "♻️", texto: "Separo o lixo por cores. Azul para papel, vermelho para plástico, verde para vidro e amarelo para metal. Assim podemos transformar o lixo em uma coisa nova. Como se chama essa atitude?", cenario: "♻️" }
+        ];
+
+        // Estado do jogo
+        let palavrasCompletadas = JSON.parse(localStorage.getItem('jardimProgresso')) || [];
+        let palavraAtual = null;
+
+        // Elementos DOM
+        const tela1 = document.getElementById('tela1');
+        const tela2 = document.getElementById('tela2');
+        const tela3 = document.getElementById('tela3');
+        const cardsGrid = document.getElementById('cardsGrid');
+        const btnJogar = document.getElementById('btnJogar');
+        const btnReset = document.getElementById('btnReset');
+        const btnVoltarJardim = document.getElementById('btnVoltarJardim');
+        const btnVoltarCards = document.getElementById('btnVoltarCards');
+        const btnVerificar = document.getElementById('btnVerificar');
+        const btnTentar = document.getElementById('btnTentar');
+        const cenarioPalavra = document.getElementById('cenarioPalavra');
+        const textoExplicativo = document.getElementById('textoExplicativo');
+        const areaDigitacao = document.getElementById('areaDigitacao');
+        const mensagemFeedback = document.getElementById('mensagemFeedback');
+        const medalha = document.getElementById('medalha');
+
+        // Sons (placeholders - por enquanto apenas funções vazias)
+        function tocarSomClique() {
+            console.log('🔊 som de clique');
+        }
+        function tocarSomAcerto() {
+            console.log('🔊 som de acerto');
+        }
+        function tocarSomErro() {
+            console.log('🔊 som de erro');
+        }
+        function tocarMusicaFundo() {
+            console.log('🔊 música de fundo (natureza)');
+        }
+
+        // Inicializar cards
+        function renderizarCards() {
+            cardsGrid.innerHTML = '';
+            palavras.forEach((palavra, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                if (palavrasCompletadas.includes(palavra.nome)) {
+                    card.classList.add('completado');
+                }
+                card.style.borderColor = palavra.borda;
+                card.dataset.indice = index;
+                card.innerHTML = palavra.emoji;
+                card.addEventListener('click', () => abrirPalavra(index));
+                cardsGrid.appendChild(card);
+            });
+        }
+
+        // Abrir tela da palavra
+        function abrirPalavra(indice) {
+            palavraAtual = palavras[indice];
+            cenarioPalavra.textContent = palavraAtual.cenario;
+            textoExplicativo.textContent = palavraAtual.texto;
+            // Criar inputs
+            areaDigitacao.innerHTML = '';
+            for (let i = 0; i < palavraAtual.letras; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'letra-input';
+                input.maxLength = 1;
+                input.dataset.pos = i;
+                input.setAttribute('aria-label', `Letra ${i+1}`);
+                input.addEventListener('input', function(e) {
+                    this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+                    if (this.value.length === 1) {
+                        const next = this.parentElement.querySelector(`[data-pos="${i+1}"]`);
+                        if (next) next.focus();
+                    }
+                });
+                areaDigitacao.appendChild(input);
+            }
+            mensagemFeedback.textContent = '';
+            // Mudar para tela 3
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+            tela3.classList.add('ativa');
+        }
+
+        // Verificar palavra
+        btnVerificar.addEventListener('click', () => {
+            if (!palavraAtual) return;
+            const inputs = document.querySelectorAll('.letra-input');
+            let preenchidos = true;
+            let palavraDigitada = '';
+            inputs.forEach(input => {
+                if (input.value === '') preenchidos = false;
+                palavraDigitada += input.value;
+            });
+            if (!preenchidos) {
+                mensagemFeedback.textContent = '❌ PREENCHA TODAS AS LETRAS';
+                return;
+            }
+            if (palavraDigitada === palavraAtual.nome) {
+                // Acerto
+                mensagemFeedback.textContent = `🎉 PARABÉNS! A palavra é ${palavraAtual.acentos}!`;
+                inputs.forEach(input => input.style.borderColor = 'green');
+                tocarSomAcerto();
+                // Marcar como completada se não estiver
+                if (!palavrasCompletadas.includes(palavraAtual.nome)) {
+                    palavrasCompletadas.push(palavraAtual.nome);
+                    localStorage.setItem('jardimProgresso', JSON.stringify(palavrasCompletadas));
+                    renderizarCards();
+                }
+                // Verificar se completou todas
+                if (palavrasCompletadas.length === palavras.length) {
+                    mostrarMedalha();
+                }
+            } else {
+                // Erro
+                mensagemFeedback.textContent = '😓 TENTE NOVAMENTE';
+                inputs.forEach(input => input.style.borderColor = 'red');
+                tocarSomErro();
+                setTimeout(() => {
+                    inputs.forEach(input => input.style.borderColor = '#4682B4');
+                }, 1000);
+            }
+        });
+
+        // Tentar novamente (limpar inputs)
+        btnTentar.addEventListener('click', () => {
+            document.querySelectorAll('.letra-input').forEach(input => {
+                input.value = '';
+                input.style.borderColor = '#4682B4';
+            });
+            mensagemFeedback.textContent = '';
+            document.querySelector('.letra-input')?.focus();
+        });
+
+        // Voltar para cards
+        btnVoltarCards.addEventListener('click', () => {
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+            tela2.classList.add('ativa');
+        });
+
+        // Botão jogar
+        btnJogar.addEventListener('click', () => {
+            tocarSomClique();
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+            tela2.classList.add('ativa');
+        });
+
+        // Botão reset: limpa progresso e volta para tela 1
+        btnReset.addEventListener('click', () => {
+            tocarSomClique();
+            palavrasCompletadas = [];
+            localStorage.removeItem('jardimProgresso');
+            renderizarCards(); // atualiza os cards (todos sem check)
+            // Se estiver em qualquer tela, volta para tela 1
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+            tela1.classList.add('ativa');
+        });
+
+        // Botão voltar ao jardim
+        btnVoltarJardim.addEventListener('click', () => {
+            tocarSomClique();
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+            tela1.classList.add('ativa');
+        });
+
+        // Mostrar medalha
+        function mostrarMedalha() {
+            medalha.style.display = 'block';
+            setTimeout(() => {
+                medalha.style.display = 'none';
+            }, 5000);
+        }
+
+        // Inicializar
+        renderizarCards();
+        // Se já tiver completado todas, mostrar medalha ao iniciar?
+        if (palavrasCompletadas.length === palavras.length) {
+            mostrarMedalha();
+        }
+        // Tocar música de fundo (placeholders)
+        tocarMusicaFundo();
+
+        // Adicionar evento de clique para todos os botões (som)
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', tocarSomClique);
+        });
+    </script>
+</body>
+</html>
