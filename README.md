@@ -84,7 +84,7 @@ No jogo, a criança encontra um jardim encantado com **9 palavras** relacionadas
 ├── index.html                 # Arquivo principal (HTML + CSS + JS)
 ├── medalha.jpg                # Imagem da medalha (pode ser trocada)
 └── fundo da tela inicial.jpg  # Imagem de fundo da tela inicial
-
+```
 
 
 **Observações sobre imagens:** - O jogo utiliza as imagens `medalha.jpg` e `fundo da tela inicial.jpg`.  
