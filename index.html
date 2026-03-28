@@ -334,6 +334,7 @@
         .botao.verificar { background: #32CD32; }
         .botao.tentar    { background: #FFA500; }
         .botao.voltar    { background: #1E90FF; }
+        .botao.revelar   { background: #9370DB; } /* roxo para revelar imagem */
 
         .botao:hover {
             filter: brightness(0.9);
@@ -654,6 +655,7 @@
         <div class="texto-explicativo" id="textoExplicativo"></div>
         <div class="area-digitacao" id="areaDigitacao"></div>
         <div class="botoes-palavra">
+            <button class="botao revelar" id="btnRevelarImagem">revelar imagem</button>
             <button class="botao verificar" id="btnVerificar">verificar</button>
             <button class="botao tentar" id="btnTentar">tentar novamente</button>
             <button class="botao voltar" id="btnVoltarCards">voltar as cartas</button>
@@ -686,7 +688,7 @@
     <script>
         // -------------------- DADOS DAS PALAVRAS (ORDEM SOLICITADA) --------------------
         const palavras = [
-            { nome: "AR", acentos: "AR", letras: 2, borda: "#87CEEB", emoji: "💨", texto: "Quando você respira pelo nariz, eu estou lá, invisível. Todos precisam de mim para viver, mas quando fico cheio de poluição, a saúde de todos fica fraca. Quem sou eu?", cenario: "💨" },
+            { nome: "AR", acentos: "AR", letras: 2, borda: "#87CEEB", emoji: "💨", texto: "Quando você respira, eu estou lá, invisível. Todos precisam de mim para viver, mas quando fico poluído, a saúde fica fraca. Quem sou eu?", cenario: "💨" },
             { nome: "SOL", acentos: "SOL", letras: 3, borda: "#FFD700", emoji: "☀️", texto: "Brilho forte no céu durante o dia. Meu calor aquece a Terra e ajuda as plantas a crescerem. Quando vou embora, a noite chega. Quem sou eu?", cenario: "☀️" },
             { nome: "AGUA", acentos: "ÁGUA", letras: 4, borda: "#00BFFF", emoji: "💧", texto: "Caio do céu quando chove. Corro nos rios e nas cachoeiras. As plantas bebem de mim para crescer. Os animais e as pessoas também precisam de mim para viver. Quem sou eu?", cenario: "💧" },
             { nome: "FLOR", acentos: "FLOR", letras: 4, borda: "#FF69B4", emoji: "🌸", texto: "Posso ter pétalas de várias cores. Moro em jardins e campos. Preciso de água e sol para não murchar. Quem sou eu?", cenario: "🌸" },
@@ -700,7 +702,7 @@
         // -------------------- ESTADO DO JOGO --------------------
         let palavrasCompletadas = JSON.parse(localStorage.getItem('jardimProgresso')) || [];
         let palavraAtual = null;
-        let imagemRevelada = false;
+        let imagemRevelada = false;      // indica se a imagem já foi revelada pelo botão
 
         // -------------------- ELEMENTOS DA TELA --------------------
         const tela1 = document.getElementById('tela1');
@@ -714,6 +716,7 @@
         const btnVoltarCards = document.getElementById('btnVoltarCards');
         const btnVerificar = document.getElementById('btnVerificar');
         const btnTentar = document.getElementById('btnTentar');
+        const btnRevelarImagem = document.getElementById('btnRevelarImagem');
         const cenarioPalavraDiv = document.getElementById('cenarioPalavra');
         const textoExplicativo = document.getElementById('textoExplicativo');
         const areaDigitacao = document.getElementById('areaDigitacao');
@@ -746,7 +749,7 @@
             });
         }
 
-        // -------------------- MOSTRA O PLACEHOLDER OU A IMAGEM --------------------
+        // -------------------- MOSTRA O PLACEHOLDER OU A IMAGEM (SE REVELADA) --------------------
         function atualizarImagem() {
             if (imagemRevelada) {
                 cenarioPalavraDiv.innerHTML = palavraAtual.cenario;
@@ -763,7 +766,7 @@
                 input.style.borderColor = '#4682B4';
             });
             mensagemFeedback.textContent = '';
-            imagemRevelada = false;
+            imagemRevelada = false;      // a imagem volta a ficar escondida ao abrir nova palavra
             atualizarImagem();
         }
 
@@ -810,11 +813,21 @@
             palavraAtual = palavras[indice];
             textoExplicativo.textContent = palavraAtual.texto;
             criarCamposLetra();
-            resetarTela3();
+            resetarTela3();   // limpa campos, esconde imagem
             premioButtonContainer.style.display = 'none';
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela3.classList.add('ativa');
         }
+
+        // -------------------- REVELAR IMAGEM (botão) --------------------
+        btnRevelarImagem.addEventListener('click', () => {
+            if (!palavraAtual) return;
+            if (!imagemRevelada) {
+                imagemRevelada = true;
+                atualizarImagem();
+                tocarSomClique(); // opcional: som de clique
+            }
+        });
 
         // -------------------- VERIFICA A PALAVRA DIGITADA --------------------
         btnVerificar.addEventListener('click', () => {
@@ -839,11 +852,7 @@
                 inputs.forEach(input => input.style.borderColor = 'green');
                 tocarSomAcerto();
 
-                if (!imagemRevelada) {
-                    imagemRevelada = true;
-                    atualizarImagem();
-                }
-
+                // Não revelamos a imagem automaticamente, apenas marcamos a palavra como completada
                 if (!palavrasCompletadas.includes(palavraAtual.nome)) {
                     palavrasCompletadas.push(palavraAtual.nome);
                     localStorage.setItem('jardimProgresso', JSON.stringify(palavrasCompletadas));
@@ -871,9 +880,7 @@
             });
             mensagemFeedback.textContent = '';
             document.querySelector('.letra-input')?.focus();
-            if (!imagemRevelada) {
-                atualizarImagem();
-            }
+            // Não altera o estado da imagem revelada (mantém como está)
         });
 
         // -------------------- VOLTAR PARA OS CARDS --------------------
