@@ -24,8 +24,8 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(145deg, #87CEEB 0%, #98FB98 100%);
-            overflow-y: auto;       /* Permite rolar a página se o conteúdo for maior que a tela */
-            overflow-x: hidden;     /* Evita rolagem horizontal */
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         /* Força todos os textos principais a ficarem em letras maiúsculas */
@@ -40,7 +40,7 @@
         .tela {
             position: absolute;
             width: 100vw;
-            min-height: 100vh;       /* Altura mínima da tela inteira, permite rolagem */
+            min-height: 100vh;
             display: none;
             flex-direction: column;
             justify-content: center;
@@ -55,7 +55,7 @@
             display: flex;
         }
 
-        /* TELA 1 – JARDIM ENCANTADO */
+        /* TELA 1 – JARDIM ENCANTADO (tela inicial) */
         #tela1 {
             background-image: url('fundo da tela inicial.jpg');
             background-size: cover;
@@ -107,7 +107,7 @@
             margin: 0 auto;
             backdrop-filter: blur(4px);
             z-index: 30;
-            pointer-events: none;   /* Impede que o rodapé atrapalhe os cliques */
+            pointer-events: none; /* impede que o rodapé atrapalhe os cliques */
             font-weight: normal;
             letter-spacing: 0.5px;
         }
@@ -181,14 +181,14 @@
         .btn-jogar {
             background: #FFD700;
             border-color: #FF8C00;
-            animation: pulsar 2s infinite;   /* Pisca suavemente */
+            animation: pulsar 2s infinite;   /* pisca suavemente para chamar atenção */
         }
         .btn-reset {
             background: #FF6347;
             border-color: #8B0000;
         }
         .btn-jardim:hover {
-            transform: scale(1.05);         /* Aumenta um pouco ao passar o mouse */
+            transform: scale(1.05);         /* aumenta um pouco ao passar o mouse */
         }
 
         /* TELA 2 – CARDS (as cartas com números ou emojis) */
@@ -227,7 +227,7 @@
         .card:hover {
             transform: scale(1.05);
         }
-        /* Destaque para navegação por teclado */
+        /* Destaque para navegação por teclado (quando o card está selecionado) */
         .card.keyboard-focus {
             border-color: #FF8C00 !important;
             box-shadow: 0 0 0 3px #FFD700, 0 0 0 6px #FF8C00;
@@ -297,7 +297,23 @@
             margin: 20px;
             text-align: center;
         }
-        /* Container para colocar os campos de letra e o botão de dica lado a lado */
+        /* Instrução que fica entre a imagem e o texto da palavra */
+        .instrucao-meio {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            margin: 20px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 80%;
+        }
+        .instrucao-meio span {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        /* Container flex para os campos de letra e botão de dica lado a lado */
         .area-dica-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -519,24 +535,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Instruções com balão amarelo */
-        .instrucao {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-size: 1.5rem;
-            margin: 10px;
-            border: 3px solid #FFD700;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            text-align: center;
-            max-width: 80%;
-            z-index: 20;
-        }
-        .instrucao span {
-            font-size: 2rem;
-            margin-right: 10px;
-        }
-
         /* Borboleta animada que aparece ao dar dica */
         .borboleta-voadora {
             position: fixed;
@@ -551,8 +549,8 @@
         @media (max-width: 600px) {
             .welcome-text { font-size: 1.2rem; padding: 8px 16px; white-space: normal; width: 90%; top: 3%; }
             .footer-text { font-size: 0.7rem; bottom: 5px; padding: 4px 8px; width: 95%; }
-            .instrucao { font-size: 1rem; padding: 8px 12px; }
-            .instrucao span { font-size: 1.5rem; }
+            .instrucao-meio { font-size: 1rem; padding: 8px 12px; }
+            .instrucao-meio span { font-size: 1.5rem; }
             .arvore { font-size: 4rem; }
             .flor { font-size: 2rem; }
             .nuvem { font-size: 3rem; }
@@ -631,12 +629,17 @@
 
     <!-- TELA 3 - PALAVRA (desafio) -->
     <div id="tela3" class="tela">
-        <div class="instrucao">
-            <span>✏️</span> LEIA A DICA E DIGITE A PALAVRA NOS QUADRADOS. DEPOIS CLIQUE EM VERIFICAR!
-        </div>
+        <!-- Área da imagem secreta (que pode ser revelada) -->
         <div class="cenario-palavra" id="cenarioPalavra">
             <div class="imagem-placeholder">❓ IMAGEM SECRETA</div>
         </div>
+        
+        <!-- Instrução que fica entre a imagem e o texto da palavra (o texto será alterado dinamicamente) -->
+        <div class="instrucao-meio" id="instrucaoMeio">
+            <span>✏️</span> <!-- conteúdo será preenchido pelo JavaScript -->
+        </div>
+
+        <!-- Texto da dica (pergunta) -->
         <div class="texto-explicativo" id="textoExplicativo"></div>
         
         <!-- Container que coloca os campos de letra e o botão de dica lado a lado -->
@@ -645,16 +648,18 @@
             <button class="botao-dica-lateral" id="btnDicaLateral">🦋</button>
         </div>
         
+        <!-- Botões de ação -->
         <div class="botoes-palavra">
             <button class="botao revelar" id="btnRevelarImagem">REVELAR IMAGEM</button>
             <button class="botao verificar" id="btnVerificar">VERIFICAR</button>
             <button class="botao tentar" id="btnTentar">TENTAR NOVAMENTE</button>
             <button class="botao voltar" id="btnVoltarCards">VOLTAR AS CARTAS</button>
         </div>
+        <!-- Área para mensagens de feedback (balões) -->
         <div class="mensagem-feedback" id="mensagemFeedback"></div>
     </div>
 
-    <!-- TELA 4 - PRÊMIO -->
+    <!-- TELA 4 - PRÊMIO (tela de celebração) -->
     <div id="tela4" class="tela">
         <div class="tela4-conteudo">
             <img class="medalha-grande" src="medalha.jpg" alt="medalha de ouro">
@@ -663,6 +668,7 @@
             </div>
             <button class="btn-voltar-inicio" id="btnVoltarInicio">🌻 VOLTAR AO JARDIM 🌻</button>
         </div>
+        <!-- Pássaros e borboletas animados -->
         <div class="passaro-tela4" style="top: 10%; animation-duration: 22s;">🐦</div>
         <div class="passaro-tela4" style="top: 30%; animation-duration: 18s;">🐦</div>
         <div class="passaro-tela4" style="top: 45%; animation-duration: 25s;">🐦</div>
@@ -696,7 +702,7 @@
         let palavraAtual = null;          // palavra que está sendo jogada agora
         let imagemRevelada = false;       // se a imagem secreta já foi mostrada
         let somVitoriaTocado = false;     // controla para não repetir o som de vitória
-        let cardPendenteAnimacao = null;  // guarda qual card será animado quando voltar à tela 2
+        let cardPendenteAnimacao = null;  // guarda qual card será animado ao voltar à tela 2
         let dicasRestantes = 0;           // quantas dicas ainda podem ser usadas na palavra atual
         let dicasUsadas = 0;              // quantas dicas já foram usadas
 
@@ -721,6 +727,7 @@
         const premioTela2Container = document.getElementById('premioTela2Container');
         const btnIrPremioTela2 = document.getElementById('btnIrPremioTela2');
         const btnVoltarInicio = document.getElementById('btnVoltarInicio');
+        const instrucaoMeio = document.getElementById('instrucaoMeio');
 
         // --- ÁUDIOS (arquivos de som) ---
         // Cada áudio é carregado a partir de um arquivo na mesma pasta do jogo.
@@ -965,6 +972,22 @@
             }
         }
 
+        // --- FUNÇÃO PARA ATUALIZAR O TEXTO DA INSTRUÇÃO ---
+        // Define o texto da instrução com base no número de letras da palavra atual
+        function atualizarTextoInstrucao() {
+            if (!palavraAtual) return;
+            const span = instrucaoMeio.querySelector('span');
+            if (palavraAtual.letras <= 3) {
+                // Texto curto para palavras de 2 ou 3 letras (AR e SOL)
+                span.innerHTML = '✏️';
+                instrucaoMeio.innerHTML = '<span>✏️</span> LEIA O TEXTO E DIGITE AS LETRAS DA PALAVRA NOS QUADRADOS. SE PRECISAR DE AJUDA PODE REVELAR A IMAGEM. DEPOIS CLIQUE EM VERIFICAR!';
+            } else {
+                // Texto completo para palavras com 4+ letras
+                span.innerHTML = '✏️';
+                instrucaoMeio.innerHTML = '<span>✏️</span> LEIA O TEXTO E DIGITE AS LETRAS DA PALAVRA NOS QUADRADOS. SE PRECISAR DE AJUDA PODE REVELAR A IMAGEM OU PEDIR AJUDA PARA A BORBOLETA. DEPOIS CLIQUE EM VERIFICAR!';
+            }
+        }
+
         // --- LÓGICA DAS DICAS COM BORBOLETA VOADORA ---
         // Atualiza se o botão de dica está habilitado, baseado no tamanho da palavra e quantas dicas já foram usadas
         function atualizarBotaoDica() {
@@ -973,14 +996,17 @@
             if (letras <= 3) {
                 btnDicaLateral.disabled = true;
                 dicasRestantes = 0;
-            } else if (letras <= 6) {
-                btnDicaLateral.disabled = false;
-                dicasRestantes = 1 - dicasUsadas;
-                if (dicasRestantes <= 0) btnDicaLateral.disabled = true;
+                // Para palavras curtas, não há dica, mas o texto da instrução já foi atualizado pela função separada
             } else {
-                btnDicaLateral.disabled = false;
-                dicasRestantes = 2 - dicasUsadas;
-                if (dicasRestantes <= 0) btnDicaLateral.disabled = true;
+                if (letras <= 6) {
+                    btnDicaLateral.disabled = false;
+                    dicasRestantes = 1 - dicasUsadas;
+                    if (dicasRestantes <= 0) btnDicaLateral.disabled = true;
+                } else {
+                    btnDicaLateral.disabled = false;
+                    dicasRestantes = 2 - dicasUsadas;
+                    if (dicasRestantes <= 0) btnDicaLateral.disabled = true;
+                }
             }
         }
 
@@ -1059,6 +1085,7 @@
             }
             palavraAtual = palavra;
             dicasUsadas = 0;               // reinicia a contagem de dicas para esta palavra
+            atualizarTextoInstrucao();      // define o texto da instrução conforme o tamanho da palavra
             atualizarBotaoDica();          // configura o botão de dica conforme o tamanho
             textoExplicativo.textContent = palavraAtual.texto;
             criarCamposLetra();
