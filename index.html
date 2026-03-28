@@ -22,12 +22,12 @@
             overflow: hidden;
         }
 
-        /* ========== TODOS OS TEXTOS VISÍVEIS SERÃO MINÚSCULAS ========== */
+        /* ========== TODOS OS TEXTOS VISÍVEIS SERÃO MAIÚSCULAS ========== */
         body, .instrucao, .btn, .botao, .card, .texto-explicativo,
         .mensagem-feedback, .medalha, .btn-jardim, .btn-voltar-jardim,
         .cenario-palavra, .letra-input, .tela4-conteudo, .welcome-text,
         .footer-text, .premio-btn {
-            text-transform: lowercase;
+            text-transform: uppercase;
         }
 
         /* ========== TELAS ========== */
@@ -312,7 +312,7 @@
             border: 3px solid #4682B4;
             border-radius: 10px;
             background: white;
-            text-transform: lowercase;
+            text-transform: uppercase;
         }
 
         .botoes-palavra {
@@ -334,7 +334,7 @@
         .botao.verificar { background: #32CD32; }
         .botao.tentar    { background: #FFA500; }
         .botao.voltar    { background: #1E90FF; }
-        .botao.revelar   { background: #9370DB; } /* roxo para revelar imagem */
+        .botao.revelar   { background: #9370DB; }
 
         .botao:hover {
             filter: brightness(0.9);
@@ -608,13 +608,13 @@
     <div id="tela1" class="tela ativa">
         <div class="jardim">
             <div class="welcome-text">
-                🌱 bem-vindos ao jogo jardim das letras 🌱
+                🌱 BEM-VINDOS AO JOGO JARDIM DAS LETRAS 🌱
             </div>
             <div class="instrucao" style="position: absolute; top: 15%; left: 50%; transform: translateX(-50%);">
-                <span>🌻</span> clique em "jogar" ou em "limpar" para limpar a memória do computador e recomeçar do zero!
+                <span>🌻</span> CLIQUE EM "JOGAR" OU EM "LIMPAR" PARA LIMPAR A MEMÓRIA E RECOMEÇAR DO ZERO!
             </div>
             <div class="footer-text">
-                recurso educacional aberto &lt;rea&gt; desenvolvido como produto educacional para o projeto integrador do curso de licenciatura em pedagogia da universidade virtual do estado de são paulo &lt;univesp&gt; - 2026
+                RECURSO EDUCACIONAL ABERTO &LT;REA&GT; DESENVOLVIDO COMO PRODUTO EDUCACIONAL PARA O PROJETO INTEGRADOR DO CURSO DE LICENCIATURA EM PEDAGOGIA DA UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO &LT;UNIVESP&GT; - 2026
             </div>
             <div class="arvore esquerda">🌳</div>
             <div class="arvore direita">🌳</div>
@@ -629,41 +629,42 @@
             <div class="borboleta borboleta2">🦋</div>
             <div class="borboleta borboleta3">🦋</div>
             <div class="botoes-jardim">
-                <button class="btn-jardim btn-jogar" id="btnJogar">jogar</button>
-                <button class="btn-jardim btn-reset" id="btnReset">limpar</button>
+                <button class="btn-jardim btn-jogar" id="btnJogar">JOGAR</button>
+                <button class="btn-jardim btn-reset" id="btnReset">LIMPAR</button>
             </div>
         </div>
     </div>
 
     <!-- TELA 2 - CARDS -->
     <div id="tela2" class="tela">
-        <button class="btn-voltar-jardim" id="btnVoltarJardim">🌿 voltar ao jardim</button>
+        <button class="btn-voltar-jardim" id="btnVoltarJardim">🌿 VOLTAR AO JARDIM</button>
         <div class="instrucao">
-            <span>🔍</span> escolha um número para descobrir a palavra secreta!
+            <span>🔍</span> ESCOLHA UM NÚMERO PARA DESCOBRIR A PALAVRA SECRETA!
         </div>
         <div class="cards-grid" id="cardsGrid"></div>
+        <!-- Botão de prêmio na tela dos cards (aparece só quando todas as palavras são completadas) -->
+        <div id="premioTela2Container" style="display: none; margin-top: 20px;">
+            <button class="premio-btn" id="btnIrPremioTela2">🎉 PARABÉNS! VOCÊ COMPLETOU TODAS AS PALAVRAS! CLIQUE PARA RECEBER SEU PRÊMIO. 🎉</button>
+        </div>
     </div>
 
     <!-- TELA 3 - PALAVRA -->
     <div id="tela3" class="tela">
         <div class="instrucao">
-            <span>✏️</span> leia a dica e digite a palavra nos quadrados. depois clique em verificar!
+            <span>✏️</span> LEIA A DICA E DIGITE A PALAVRA NOS QUADRADOS. DEPOIS CLIQUE EM VERIFICAR!
         </div>
         <div class="cenario-palavra" id="cenarioPalavra">
-            <div class="imagem-placeholder">❓ imagem secreta</div>
+            <div class="imagem-placeholder">❓ IMAGEM SECRETA</div>
         </div>
         <div class="texto-explicativo" id="textoExplicativo"></div>
         <div class="area-digitacao" id="areaDigitacao"></div>
         <div class="botoes-palavra">
-            <button class="botao revelar" id="btnRevelarImagem">revelar imagem</button>
-            <button class="botao verificar" id="btnVerificar">verificar</button>
-            <button class="botao tentar" id="btnTentar">tentar novamente</button>
-            <button class="botao voltar" id="btnVoltarCards">voltar as cartas</button>
+            <button class="botao revelar" id="btnRevelarImagem">REVELAR IMAGEM</button>
+            <button class="botao verificar" id="btnVerificar">VERIFICAR</button>
+            <button class="botao tentar" id="btnTentar">TENTAR NOVAMENTE</button>
+            <button class="botao voltar" id="btnVoltarCards">VOLTAR AS CARTAS</button>
         </div>
         <div class="mensagem-feedback" id="mensagemFeedback"></div>
-        <div id="premioButtonContainer" style="display: none;">
-            <button class="premio-btn" id="btnIrPremio">🎉 parabéns você acertou todas as palavras! clique para receber seu prêmio. 🎉</button>
-        </div>
     </div>
 
     <!-- TELA 4 - PRÊMIO -->
@@ -671,9 +672,9 @@
         <div class="tela4-conteudo">
             <img class="medalha-grande" src="medalha.jpg" alt="medalha de ouro">
             <div class="mensagem-premio">
-                parabéns! você encontrou todas as palavras do nosso jardim e aprendeu mais sobre o meio ambiente. agora você é um grande explorador do jardim das letras!
+                PARABÉNS! VOCÊ ENCONTROU TODAS AS PALAVRAS DO NOSSO JARDIM E APRENDEU MAIS SOBRE O MEIO AMBIENTE. AGORA VOCÊ É UM GRANDE EXPLORADOR DO JARDIM DAS LETRAS!
             </div>
-            <button class="btn-voltar-inicio" id="btnVoltarInicio">🌻 voltar ao jardim 🌻</button>
+            <button class="btn-voltar-inicio" id="btnVoltarInicio">🌻 VOLTAR AO JARDIM 🌻</button>
         </div>
         <!-- Pássaros voam da direita para a esquerda -->
         <div class="passaro-tela4" style="top: 10%; animation-duration: 22s;">🐦</div>
@@ -688,21 +689,21 @@
     <script>
         // -------------------- DADOS DAS PALAVRAS (ORDEM SOLICITADA) --------------------
         const palavras = [
-            { nome: "AR", acentos: "AR", letras: 2, borda: "#87CEEB", emoji: "💨", texto: "Quando você respira, eu estou lá, invisível. Todos precisam de mim para viver, mas quando fico poluído, a saúde fica fraca. Quem sou eu?", cenario: "💨" },
-            { nome: "SOL", acentos: "SOL", letras: 3, borda: "#FFD700", emoji: "☀️", texto: "Brilho forte no céu durante o dia. Meu calor aquece a Terra e ajuda as plantas a crescerem. Quando vou embora, a noite chega. Quem sou eu?", cenario: "☀️" },
-            { nome: "AGUA", acentos: "ÁGUA", letras: 4, borda: "#00BFFF", emoji: "💧", texto: "Caio do céu quando chove. Corro nos rios e nas cachoeiras. As plantas bebem de mim para crescer. Os animais e as pessoas também precisam de mim para viver. Quem sou eu?", cenario: "💧" },
-            { nome: "FLOR", acentos: "FLOR", letras: 4, borda: "#FF69B4", emoji: "🌸", texto: "Posso ter pétalas de várias cores. Moro em jardins e campos. Preciso de água e sol para não murchar. Quem sou eu?", cenario: "🌸" },
-            { nome: "ARVORE", acentos: "ÁRVORE", letras: 6, borda: "#228B22", emoji: "🌳", texto: "Posso ser grande ou pequena. Minhas raízes me seguram firme na terra. Meus galhos têm folhas e podem fazer uma sombra fresquinha. Quem sou eu?", cenario: "🌳" },
-            { nome: "PASSARO", acentos: "PÁSSARO", letras: 7, borda: "#FFA500", emoji: "🐦", texto: "Tenho penas, asas e bico. Gosto de voar livre e fazer ninhos nas árvores. Canto bem cedo pela manhã. Quem sou eu?", cenario: "🐦" },
-            { nome: "ABELHA", acentos: "ABELHA", letras: 6, borda: "#FFD700", emoji: "🐝", texto: "Sou pequena, tenho asas e listras pretas e amarelas. Sou muito conhecida pelo meu zumbido. Quem sou eu?", cenario: "🐝" },
-            { nome: "SEMENTE", acentos: "SEMENTE", letras: 7, borda: "#8B4513", emoji: "🌱", texto: "Pareço um grão pequeno, mas guardo uma planta dentro de mim. Se me plantarem na terra, me regarem e o sol me aquecer, eu vou brotar e virar uma planta. Quem sou eu?", cenario: "🌱" },
-            { nome: "RECICLAR", acentos: "RECICLAR", letras: 8, borda: "#32CD32", emoji: "♻️", texto: "Separo o lixo por cores. Azul para papel, vermelho para plástico, verde para vidro e amarelo para metal. Assim podemos transformar o lixo em uma coisa nova. Como se chama essa atitude?", cenario: "♻️" }
+            { nome: "AR", acentos: "AR", letras: 2, borda: "#87CEEB", emoji: "💨", texto: "QUANDO VOCÊ RESPIRA, EU ESTOU LÁ, INVISÍVEL. TODOS PRECISAM DE MIM PARA VIVER, MAS QUANDO FICO POLUÍDO, A SAÚDE FICA FRACA. QUEM SOU EU?", cenario: "💨" },
+            { nome: "SOL", acentos: "SOL", letras: 3, borda: "#FFD700", emoji: "☀️", texto: "BRILHO FORTE NO CÉU DURANTE O DIA. MEU CALOR AQUECE A TERRA E AJUDA AS PLANTAS A CRESCEREM. QUANDO VOU EMBORA, A NOITE CHEGA. QUEM SOU EU?", cenario: "☀️" },
+            { nome: "AGUA", acentos: "ÁGUA", letras: 4, borda: "#00BFFF", emoji: "💧", texto: "CAIO DO CÉU QUANDO CHOVE. CORRO NOS RIOS E NAS CACHOEIRAS. AS PLANTAS BEBEM DE MIM PARA CRESCER. OS ANIMAIS E AS PESSOAS TAMBÉM PRECISAM DE MIM PARA VIVER. QUEM SOU EU?", cenario: "💧" },
+            { nome: "FLOR", acentos: "FLOR", letras: 4, borda: "#FF69B4", emoji: "🌸", texto: "POSSO TER PÉTALAS DE VÁRIAS CORES. MORO EM JARDINS E CAMPOS. PRECISO DE ÁGUA E SOL PARA NÃO MURCHAR. QUEM SOU EU?", cenario: "🌸" },
+            { nome: "ARVORE", acentos: "ÁRVORE", letras: 6, borda: "#228B22", emoji: "🌳", texto: "POSSO SER GRANDE OU PEQUENA. MINHAS RAÍZES ME SEGURAM FIRME NA TERRA. MEUS GALHOS TÊM FOLHAS E PODEM FAZER UMA SOMBRA FRESQUINHA. QUEM SOU EU?", cenario: "🌳" },
+            { nome: "PASSARO", acentos: "PÁSSARO", letras: 7, borda: "#FFA500", emoji: "🐦", texto: "TENHO PENAS, ASAS E BICO. GOSTO DE VOAR LIVRE E FAZER NINHOS NAS ÁRVORES. CANTO BEM CEDO PELA MANHÃ. QUEM SOU EU?", cenario: "🐦" },
+            { nome: "ABELHA", acentos: "ABELHA", letras: 6, borda: "#FFD700", emoji: "🐝", texto: "SOU PEQUENA, TENHO ASAS E LISTRAS PRETAS E AMARELAS. SOU MUITO CONHECIDA PELO MEU ZUMBIDO. QUEM SOU EU?", cenario: "🐝" },
+            { nome: "SEMENTE", acentos: "SEMENTE", letras: 7, borda: "#8B4513", emoji: "🌱", texto: "PAREÇO UM GRÃO PEQUENO, MAS GUARDO UMA PLANTA DENTRO DE MIM. SE ME PLANTAREM NA TERRA, ME REGAREM E O SOL ME AQUECER, EU VOU BROTAR E VIRAR UMA PLANTA. QUEM SOU EU?", cenario: "🌱" },
+            { nome: "RECICLAR", acentos: "RECICLAR", letras: 8, borda: "#32CD32", emoji: "♻️", texto: "SEPARO O LIXO POR CORES. AZUL PARA PAPEL, VERMELHO PARA PLÁSTICO, VERDE PARA VIDRO E AMARELO PARA METAL. ASSIM PODEMOS TRANSFORMAR O LIXO EM UMA COISA NOVA. COMO SE CHAMA ESSA ATITUDE?", cenario: "♻️" }
         ];
 
         // -------------------- ESTADO DO JOGO --------------------
         let palavrasCompletadas = JSON.parse(localStorage.getItem('jardimProgresso')) || [];
         let palavraAtual = null;
-        let imagemRevelada = false;      // indica se a imagem já foi revelada pelo botão
+        let imagemRevelada = false;
 
         // -------------------- ELEMENTOS DA TELA --------------------
         const tela1 = document.getElementById('tela1');
@@ -721,8 +722,8 @@
         const textoExplicativo = document.getElementById('textoExplicativo');
         const areaDigitacao = document.getElementById('areaDigitacao');
         const mensagemFeedback = document.getElementById('mensagemFeedback');
-        const premioButtonContainer = document.getElementById('premioButtonContainer');
-        const btnIrPremio = document.getElementById('btnIrPremio');
+        const premioTela2Container = document.getElementById('premioTela2Container');
+        const btnIrPremioTela2 = document.getElementById('btnIrPremioTela2');
         const btnVoltarInicio = document.getElementById('btnVoltarInicio');
 
         // -------------------- SONS (PLACEHOLDERS) --------------------
@@ -754,7 +755,7 @@
             if (imagemRevelada) {
                 cenarioPalavraDiv.innerHTML = palavraAtual.cenario;
             } else {
-                cenarioPalavraDiv.innerHTML = '<div class="imagem-placeholder">❓ imagem secreta</div>';
+                cenarioPalavraDiv.innerHTML = '<div class="imagem-placeholder">❓ IMAGEM SECRETA</div>';
             }
         }
 
@@ -766,7 +767,7 @@
                 input.style.borderColor = '#4682B4';
             });
             mensagemFeedback.textContent = '';
-            imagemRevelada = false;      // a imagem volta a ficar escondida ao abrir nova palavra
+            imagemRevelada = false;
             atualizarImagem();
         }
 
@@ -782,7 +783,8 @@
                 input.setAttribute('aria-label', `Letra ${i+1}`);
                 
                 input.addEventListener('input', function(e) {
-                    this.value = this.value.toLowerCase().replace(/[^a-z]/g, '');
+                    // Converte para maiúscula e remove não-letras
+                    this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
                     if (this.value.length === 1) {
                         const next = this.parentElement.querySelector(`[data-pos="${i+1}"]`);
                         if (next) next.focus();
@@ -813,8 +815,7 @@
             palavraAtual = palavras[indice];
             textoExplicativo.textContent = palavraAtual.texto;
             criarCamposLetra();
-            resetarTela3();   // limpa campos, esconde imagem
-            premioButtonContainer.style.display = 'none';
+            resetarTela3();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela3.classList.add('ativa');
         }
@@ -825,7 +826,7 @@
             if (!imagemRevelada) {
                 imagemRevelada = true;
                 atualizarImagem();
-                tocarSomClique(); // opcional: som de clique
+                tocarSomClique();
             }
         });
 
@@ -843,27 +844,27 @@
             });
 
             if (!preenchidos) {
-                mensagemFeedback.textContent = '❌ preencha todas as letras';
+                mensagemFeedback.textContent = '❌ PREENCHA TODAS AS LETRAS';
                 return;
             }
 
-            if (palavraDigitada === palavraAtual.nome.toLowerCase()) {
-                mensagemFeedback.textContent = `🎉 parabéns! a palavra é ${palavraAtual.acentos.toLowerCase()}!`;
+            if (palavraDigitada === palavraAtual.nome) {
+                mensagemFeedback.textContent = `🎉 PARABÉNS! A PALAVRA É ${palavraAtual.acentos}!`;
                 inputs.forEach(input => input.style.borderColor = 'green');
                 tocarSomAcerto();
 
-                // Não revelamos a imagem automaticamente, apenas marcamos a palavra como completada
                 if (!palavrasCompletadas.includes(palavraAtual.nome)) {
                     palavrasCompletadas.push(palavraAtual.nome);
                     localStorage.setItem('jardimProgresso', JSON.stringify(palavrasCompletadas));
                     renderizarCards();
                 }
 
+                // Verifica se todas as palavras foram completadas e atualiza o botão na tela2
                 if (palavrasCompletadas.length === palavras.length) {
-                    premioButtonContainer.style.display = 'block';
+                    premioTela2Container.style.display = 'block';
                 }
             } else {
-                mensagemFeedback.textContent = '😓 tente novamente';
+                mensagemFeedback.textContent = '😓 TENTE NOVAMENTE';
                 inputs.forEach(input => input.style.borderColor = 'red');
                 tocarSomErro();
                 setTimeout(() => {
@@ -880,7 +881,6 @@
             });
             mensagemFeedback.textContent = '';
             document.querySelector('.letra-input')?.focus();
-            // Não altera o estado da imagem revelada (mantém como está)
         });
 
         // -------------------- VOLTAR PARA OS CARDS --------------------
@@ -902,9 +902,9 @@
             palavrasCompletadas = [];
             localStorage.removeItem('jardimProgresso');
             renderizarCards();
+            premioTela2Container.style.display = 'none';
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela1.classList.add('ativa');
-            premioButtonContainer.style.display = 'none';
         });
 
         // -------------------- VOLTAR AO JARDIM --------------------
@@ -915,7 +915,7 @@
         });
 
         // -------------------- IR PARA TELA DE PRÊMIO --------------------
-        btnIrPremio.addEventListener('click', () => {
+        btnIrPremioTela2.addEventListener('click', () => {
             tocarSomClique();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela4.classList.add('ativa');
@@ -930,8 +930,9 @@
 
         // -------------------- INICIALIZAÇÃO --------------------
         renderizarCards();
+        // Se já tiver completado todas, mostra o botão na tela2 desde o início
         if (palavrasCompletadas.length === palavras.length) {
-            premioButtonContainer.style.display = 'block';
+            premioTela2Container.style.display = 'block';
         }
         tocarMusicaFundo();
         document.querySelectorAll('button').forEach(btn => {
