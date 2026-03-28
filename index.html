@@ -6,23 +6,25 @@
     <title>Exploradores do Jardim das Letras</title>
     <style>
         /* ========== ESTILOS GLOBAIS (CSS) ========== */
+        /* Este bloco define o visual de todos os elementos da página */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Comic Neue', cursive, sans-serif;
+            margin: 0;                     /* Remove margens padrão */
+            padding: 0;                    /* Remove espaçamentos internos padrão */
+            box-sizing: border-box;        /* Faz com que largura/altura incluam bordas e preenchimentos */
+            font-family: 'Comic Neue', cursive, sans-serif; /* Fonte divertida, parecida com letra de criança */
         }
 
         body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(145deg, #87CEEB 0%, #98FB98 100%);
-            overflow: hidden;
+            min-height: 100vh;             /* Altura mínima igual à altura da tela */
+            display: flex;                 /* Usa layout flexível */
+            justify-content: center;       /* Centraliza horizontalmente */
+            align-items: center;           /* Centraliza verticalmente */
+            background: linear-gradient(145deg, #87CEEB 0%, #98FB98 100%); /* Fundo gradiente: azul claro para verde claro */
+            overflow: hidden;              /* Esconde barras de rolagem desnecessárias */
         }
 
         /* ========== TODOS OS TEXTOS VISÍVEIS SERÃO MAIÚSCULAS ========== */
+        /* Essa regra força todos os textos principais a ficarem em letras maiúsculas */
         body, .instrucao, .btn, .botao, .card, .texto-explicativo,
         .mensagem-feedback, .medalha, .btn-jardim, .btn-voltar-jardim,
         .cenario-palavra, .letra-input, .tela4-conteudo, .welcome-text,
@@ -31,55 +33,58 @@
         }
 
         /* ========== TELAS ========== */
+        /* Cada tela é uma "página" dentro do jogo. Inicialmente todas ficam escondidas */
         .tela {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s;
+            position: absolute;             /* Fica posicionada sobrepondo as demais */
+            width: 100vw;                  /* Largura total da tela */
+            height: 100vh;                 /* Altura total da tela */
+            display: none;                 /* Escondida por padrão */
+            flex-direction: column;        /* Organiza conteúdo em coluna */
+            justify-content: center;       /* Centraliza conteúdo verticalmente */
+            align-items: center;           /* Centraliza conteúdo horizontalmente */
+            transition: opacity 0.5s;      /* Suaviza aparecimento/desaparecimento */
         }
 
         .tela.ativa {
-            display: flex;
+            display: flex;                 /* Quando a tela tem a classe "ativa", ela aparece */
         }
 
         /* ========== TELA 1 - JARDIM ENCANTADO ========== */
         #tela1 {
-            background-image: url('fundo da tela inicial.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
+            background-image: url('fundo da tela inicial.jpg'); /* Imagem de fundo do jardim */
+            background-size: cover;        /* A imagem cobre toda a tela */
+            background-position: center;   /* Centraliza a imagem */
+            background-repeat: no-repeat;  /* Não repete a imagem */
+            position: relative;            /* Permite posicionar elementos filhos dentro dela */
         }
 
         .jardim {
             position: relative;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: hidden;              /* Esconde partes que ultrapassem os limites */
         }
 
+        /* Texto de boas-vindas que fica no topo da tela inicial */
         .welcome-text {
             position: absolute;
             top: 5%;
             left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 200, 0.9);
+            transform: translateX(-50%);    /* Centraliza horizontalmente */
+            background: rgba(255, 255, 200, 0.9); /* Fundo amarelo claro com transparência */
             border-radius: 50px;
             padding: 12px 24px;
             font-size: 1.8rem;
             font-weight: bold;
             color: #2c5e2e;
-            border: 3px solid #FFD700;
+            border: 3px solid #FFD700;      /* Borda dourada */
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             text-align: center;
-            white-space: nowrap;
-            z-index: 25;
+            white-space: nowrap;            /* Impede que o texto quebre linha */
+            z-index: 25;                    /* Garante que fique acima dos outros elementos */
         }
 
+        /* Rodapé com informações institucionais */
         .footer-text {
             position: absolute;
             bottom: 10px;
@@ -93,27 +98,22 @@
             border-radius: 20px;
             width: fit-content;
             margin: 0 auto;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);      /* Efeito de desfoque no fundo */
             z-index: 30;
-            pointer-events: none;
+            pointer-events: none;            /* O rodapé não bloqueia cliques nos botões */
             font-weight: normal;
             letter-spacing: 0.5px;
         }
 
+        /* Estilos das árvores, flores, nuvens, passarinhos e borboletas (elementos decorativos) */
         .arvore {
             position: absolute;
             bottom: 20%;
             font-size: 8rem;
-            animation: balancar 3s infinite ease-in-out;
+            animation: balancar 3s infinite ease-in-out; /* Animação de balanço */
         }
-
-        .arvore.esquerda {
-            left: 5%;
-        }
-
-        .arvore.direita {
-            right: 5%;
-        }
+        .arvore.esquerda { left: 5%; }
+        .arvore.direita { right: 5%; }
 
         .flor {
             position: absolute;
@@ -121,7 +121,6 @@
             font-size: 3rem;
             animation: balancar 2.5s infinite alternate;
         }
-
         .flor1 { left: 20%; animation-delay: 0s; }
         .flor2 { left: 45%; animation-delay: 0.5s; }
         .flor3 { left: 70%; animation-delay: 1s; }
@@ -132,47 +131,27 @@
             opacity: 0.7;
             animation: moverNuvem linear infinite;
         }
-
-        .nuvem1 {
-            top: 10%;
-            left: -10%;
-            animation-duration: 30s;
-        }
-        .nuvem2 {
-            top: 20%;
-            left: -15%;
-            animation-duration: 45s;
-            font-size: 4rem;
-        }
+        .nuvem1 { top: 10%; left: -10%; animation-duration: 30s; }
+        .nuvem2 { top: 20%; left: -15%; animation-duration: 45s; font-size: 4rem; }
 
         .passaro {
             position: absolute;
             font-size: 2.5rem;
             animation: voar linear infinite;
         }
-
-        .passaro1 {
-            top: 15%;
-            left: -5%;
-            animation-duration: 20s;
-        }
-        .passaro2 {
-            top: 30%;
-            left: -10%;
-            animation-duration: 25s;
-            font-size: 2rem;
-        }
+        .passaro1 { top: 15%; left: -5%; animation-duration: 20s; }
+        .passaro2 { top: 30%; left: -10%; animation-duration: 25s; font-size: 2rem; }
 
         .borboleta {
             position: absolute;
             font-size: 2rem;
             animation: voarBorboleta 8s infinite alternate ease-in-out;
         }
-
         .borboleta1 { top: 40%; left: 10%; animation-duration: 10s; }
         .borboleta2 { top: 60%; left: 30%; animation-duration: 12s; }
         .borboleta3 { top: 50%; left: 70%; animation-duration: 9s; }
 
+        /* Botões principais da tela inicial */
         .botoes-jardim {
             position: absolute;
             top: 50%;
@@ -182,7 +161,6 @@
             gap: 20px;
             z-index: 10;
         }
-
         .btn-jardim {
             padding: 20px 40px;
             font-size: 2.5rem;
@@ -193,37 +171,32 @@
             transition: 0.3s;
             font-weight: bold;
         }
-
         .btn-jogar {
             background: #FFD700;
             border-color: #FF8C00;
-            animation: pulsar 2s infinite;
+            animation: pulsar 2s infinite;  /* Pulsar para chamar atenção */
         }
-
         .btn-reset {
             background: #FF6347;
             border-color: #8B0000;
         }
-
         .btn-jardim:hover {
-            transform: scale(1.05);
+            transform: scale(1.05);         /* Efeito de aumentar ao passar o mouse */
         }
 
-        /* ========== TELA 2 - CARDS ========== */
+        /* ========== TELA 2 - CARDS (cartas) ========== */
         #tela2 {
-            background: #2e8b57;
+            background: #2e8b57;            /* Fundo verde */
             justify-content: space-around;
         }
-
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);  /* Grade com 3 colunas */
             gap: 20px;
             max-width: 800px;
             width: 90%;
             margin: 20px;
         }
-
         .card {
             background: white;
             border-radius: 20px;
@@ -236,11 +209,10 @@
             cursor: pointer;
             font-weight: bold;
         }
-
         .card:hover {
             transform: scale(1.05);
         }
-
+        /* Para os cards já descobertos, adiciona um check verde no canto superior direito */
         .card.completado::after {
             content: "✅";
             position: absolute;
@@ -248,7 +220,7 @@
             right: 5px;
             font-size: 2rem;
         }
-
+        /* Botão para voltar ao jardim (tela inicial) */
         .btn-voltar-jardim {
             position: absolute;
             top: 20px;
@@ -261,12 +233,11 @@
             cursor: pointer;
         }
 
-        /* ========== TELA 3 - PALAVRA ========== */
+        /* ========== TELA 3 - PALAVRA (desafio) ========== */
         #tela3 {
-            background: #f0e68c;
+            background: #f0e68c;            /* Fundo amarelo claro */
             justify-content: space-around;
         }
-
         .cenario-palavra {
             font-size: 8rem;
             text-align: center;
@@ -276,7 +247,6 @@
             justify-content: center;
             align-items: center;
         }
-
         .imagem-placeholder {
             font-size: 1.8rem;
             padding: 15px 30px;
@@ -285,7 +255,6 @@
             color: white;
             display: inline-block;
         }
-
         .texto-explicativo {
             font-size: 1.8rem;
             background: rgba(255,255,255,0.8);
@@ -295,7 +264,6 @@
             margin: 20px;
             text-align: center;
         }
-
         .area-digitacao {
             display: flex;
             gap: 10px;
@@ -303,7 +271,6 @@
             justify-content: center;
             margin: 20px;
         }
-
         .letra-input {
             width: 60px;
             height: 60px;
@@ -314,13 +281,11 @@
             background: white;
             text-transform: uppercase;
         }
-
         .botoes-palavra {
             display: flex;
             gap: 15px;
             margin: 20px;
         }
-
         .botao {
             padding: 15px 30px;
             font-size: 1.5rem;
@@ -330,24 +295,20 @@
             color: white;
             transition: 0.3s;
         }
-
         .botao.verificar { background: #32CD32; }
         .botao.tentar    { background: #FFA500; }
         .botao.voltar    { background: #1E90FF; }
         .botao.revelar   { background: #9370DB; }
-
         .botao:hover {
             filter: brightness(0.9);
             transform: scale(1.05);
         }
-
         .mensagem-feedback {
             font-size: 2rem;
             margin: 10px;
             padding: 10px;
             border-radius: 10px;
         }
-
         .premio-btn {
             background-color: #FFD700;
             color: #8B4513;
@@ -372,7 +333,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .tela4-conteudo {
             background: rgba(255,255,240,0.9);
             border-radius: 50px;
@@ -383,21 +343,18 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 5px solid gold;
         }
-
         .medalha-grande {
             width: 200px;
             height: auto;
             margin-bottom: 20px;
             filter: drop-shadow(0 0 10px gold);
         }
-
         .mensagem-premio {
             font-size: 1.8rem;
             margin: 20px 0;
             line-height: 1.4;
             color: #2c5e2e;
         }
-
         .btn-voltar-inicio {
             background: #32CD32;
             color: white;
@@ -409,22 +366,19 @@
             transition: 0.3s;
             margin-top: 20px;
         }
-
         .btn-voltar-inicio:hover {
             transform: scale(1.05);
             background: #228B22;
         }
 
-        /* Pássaros na tela4: voam da direita para a esquerda */
+        /* Pássaros e borboletas animados na tela de prêmio */
         .passaro-tela4 {
             position: absolute;
             font-size: 2.5rem;
-            pointer-events: none;
+            pointer-events: none;            /* Não interferem nos cliques */
             animation: voarDireitaEsquerda linear infinite;
             z-index: 1;
         }
-
-        /* Borboletas na tela4: voam da esquerda para a direita */
         .borboleta-tela4 {
             position: absolute;
             font-size: 2rem;
@@ -433,11 +387,11 @@
             z-index: 1;
         }
 
+        /* Definição das animações */
         @keyframes voarDireitaEsquerda {
             from { left: 105%; }
             to { left: -5%; }
         }
-
         @keyframes voarEsquerdaDireita {
             0% { transform: translate(0,0) rotate(0deg); left: -5%; }
             25% { transform: translate(40px, -15px) rotate(5deg); }
@@ -446,23 +400,20 @@
             100% { transform: translate(160px, 20px) rotate(0deg); left: 105%; }
         }
 
-        /* ========== ANIMAÇÕES GERAIS ========== */
+        /* Animações dos elementos da tela inicial */
         @keyframes balancar {
             0% { transform: rotate(0deg); }
             50% { transform: rotate(3deg); }
             100% { transform: rotate(0deg); }
         }
-
         @keyframes moverNuvem {
             from { left: -10%; }
             to { left: 110%; }
         }
-
         @keyframes voar {
             from { left: 105%; }
             to { left: -5%; }
         }
-
         @keyframes voarBorboleta {
             0% { transform: translate(0,0) rotate(0deg); }
             25% { transform: translate(30px, -20px) rotate(5deg); }
@@ -470,14 +421,13 @@
             75% { transform: translate(90px, -10px) rotate(3deg); }
             100% { transform: translate(120px, 20px) rotate(0deg); }
         }
-
         @keyframes pulsar {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
 
-        /* ========== INSTRUÇÕES (balões amarelos) ========== */
+        /* Instruções (balões amarelos) */
         .instrucao {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 30px;
@@ -490,132 +440,57 @@
             max-width: 80%;
             z-index: 20;
         }
-
         .instrucao span {
             font-size: 2rem;
             margin-right: 10px;
         }
 
         /* ========== RESPONSIVIDADE ========== */
+        /* Ajusta o tamanho dos elementos em telas pequenas (celulares) */
         @media (max-width: 600px) {
-            .welcome-text {
-                font-size: 1.2rem;
-                padding: 8px 16px;
-                white-space: normal;
-                width: 90%;
-                top: 3%;
-            }
-            .footer-text {
-                font-size: 0.7rem;
-                bottom: 5px;
-                padding: 4px 8px;
-                width: 95%;
-            }
-            .instrucao {
-                font-size: 1rem;
-                padding: 8px 12px;
-            }
-            .instrucao span {
-                font-size: 1.5rem;
-            }
-            .arvore {
-                font-size: 4rem;
-            }
-            .flor {
-                font-size: 2rem;
-            }
-            .nuvem {
-                font-size: 3rem;
-            }
-            .passaro {
-                font-size: 1.8rem;
-            }
-            .borboleta {
-                font-size: 1.5rem;
-            }
-            .botoes-jardim {
-                gap: 10px;
-            }
-            .btn-jardim {
-                padding: 10px 20px;
-                font-size: 1.5rem;
-                border-width: 3px;
-            }
-            .cards-grid {
-                gap: 10px;
-            }
-            .card {
-                padding: 10px;
-                font-size: 2rem;
-            }
-            .card.completado::after {
-                font-size: 1.5rem;
-            }
-            .btn-voltar-jardim {
-                font-size: 1.2rem;
-                padding: 6px 12px;
-            }
-            .cenario-palavra {
-                font-size: 5rem;
-            }
-            .imagem-placeholder {
-                font-size: 1rem;
-                padding: 8px 16px;
-            }
-            .texto-explicativo {
-                font-size: 1.2rem;
-                padding: 10px;
-                margin: 10px;
-            }
-            .letra-input {
-                width: 40px;
-                height: 40px;
-                font-size: 2rem;
-            }
-            .botoes-palavra {
-                gap: 8px;
-            }
-            .botao {
-                padding: 10px 20px;
-                font-size: 1.2rem;
-            }
-            .mensagem-feedback {
-                font-size: 1.2rem;
-            }
-            .premio-btn {
-                font-size: 1rem;
-                padding: 10px 18px;
-            }
-            .medalha-grande {
-                width: 120px;
-            }
-            .mensagem-premio {
-                font-size: 1.2rem;
-            }
-            .btn-voltar-inicio {
-                padding: 10px 20px;
-                font-size: 1.2rem;
-            }
-            .passaro-tela4, .borboleta-tela4 {
-                font-size: 1.8rem;
-            }
+            .welcome-text { font-size: 1.2rem; padding: 8px 16px; white-space: normal; width: 90%; top: 3%; }
+            .footer-text { font-size: 0.7rem; bottom: 5px; padding: 4px 8px; width: 95%; }
+            .instrucao { font-size: 1rem; padding: 8px 12px; }
+            .instrucao span { font-size: 1.5rem; }
+            .arvore { font-size: 4rem; }
+            .flor { font-size: 2rem; }
+            .nuvem { font-size: 3rem; }
+            .passaro { font-size: 1.8rem; }
+            .borboleta { font-size: 1.5rem; }
+            .botoes-jardim { gap: 10px; }
+            .btn-jardim { padding: 10px 20px; font-size: 1.5rem; border-width: 3px; }
+            .cards-grid { gap: 10px; }
+            .card { padding: 10px; font-size: 2rem; }
+            .card.completado::after { font-size: 1.5rem; }
+            .btn-voltar-jardim { font-size: 1.2rem; padding: 6px 12px; }
+            .cenario-palavra { font-size: 5rem; }
+            .imagem-placeholder { font-size: 1rem; padding: 8px 16px; }
+            .texto-explicativo { font-size: 1.2rem; padding: 10px; margin: 10px; }
+            .letra-input { width: 40px; height: 40px; font-size: 2rem; }
+            .botoes-palavra { gap: 8px; }
+            .botao { padding: 10px 20px; font-size: 1.2rem; }
+            .mensagem-feedback { font-size: 1.2rem; }
+            .premio-btn { font-size: 1rem; padding: 10px 18px; }
+            .medalha-grande { width: 120px; }
+            .mensagem-premio { font-size: 1.2rem; }
+            .btn-voltar-inicio { padding: 10px 20px; font-size: 1.2rem; }
+            .passaro-tela4, .borboleta-tela4 { font-size: 1.8rem; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- TELA 1 - JARDIM -->
+    <!-- ========== TELA 1 - JARDIM (inicial) ========== -->
     <div id="tela1" class="tela ativa">
         <div class="jardim">
-            <div class="welcome-text">
-                🌱 BEM-VINDOS AO JOGO JARDIM DAS LETRAS 🌱
-            </div>
+            <div class="welcome-text">🌱 BEM-VINDOS AO JOGO JARDIM DAS LETRAS 🌱</div>
             <div class="instrucao" style="position: absolute; top: 15%; left: 50%; transform: translateX(-50%);">
                 <span>🌻</span> CLIQUE EM "JOGAR" OU EM "LIMPAR" PARA LIMPAR A MEMÓRIA E RECOMEÇAR DO ZERO!
             </div>
             <div class="footer-text">
                 RECURSO EDUCACIONAL ABERTO &LT;REA&GT; DESENVOLVIDO COMO PRODUTO EDUCACIONAL PARA O PROJETO INTEGRADOR DO CURSO DE LICENCIATURA EM PEDAGOGIA DA UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO &LT;UNIVESP&GT; - 2026
             </div>
+            <!-- Elementos decorativos (árvores, flores, nuvens, pássaros, borboletas) -->
             <div class="arvore esquerda">🌳</div>
             <div class="arvore direita">🌳</div>
             <div class="flor flor1">🌸</div>
@@ -628,6 +503,7 @@
             <div class="borboleta borboleta1">🦋</div>
             <div class="borboleta borboleta2">🦋</div>
             <div class="borboleta borboleta3">🦋</div>
+            <!-- Botões principais -->
             <div class="botoes-jardim">
                 <button class="btn-jardim btn-jogar" id="btnJogar">JOGAR</button>
                 <button class="btn-jardim btn-reset" id="btnReset">LIMPAR</button>
@@ -635,20 +511,20 @@
         </div>
     </div>
 
-    <!-- TELA 2 - CARDS -->
+    <!-- ========== TELA 2 - CARDS (grade com números/emojis) ========== -->
     <div id="tela2" class="tela">
         <button class="btn-voltar-jardim" id="btnVoltarJardim">🌿 VOLTAR AO JARDIM</button>
         <div class="instrucao">
             <span>🔍</span> ESCOLHA UM NÚMERO PARA DESCOBRIR A PALAVRA SECRETA!
         </div>
         <div class="cards-grid" id="cardsGrid"></div>
-        <!-- Botão de prêmio na tela dos cards (aparece só quando todas as palavras são completadas) -->
+        <!-- Container do botão de prêmio, aparece só quando todas as palavras forem descobertas -->
         <div id="premioTela2Container" style="display: none; margin-top: 20px;">
             <button class="premio-btn" id="btnIrPremioTela2">🎉 PARABÉNS! VOCÊ COMPLETOU TODAS AS PALAVRAS! CLIQUE PARA RECEBER SEU PRÊMIO. 🎉</button>
         </div>
     </div>
 
-    <!-- TELA 3 - PALAVRA -->
+    <!-- ========== TELA 3 - DESAFIO (adivinhação da palavra) ========== -->
     <div id="tela3" class="tela">
         <div class="instrucao">
             <span>✏️</span> LEIA A DICA E DIGITE A PALAVRA NOS QUADRADOS. DEPOIS CLIQUE EM VERIFICAR!
@@ -667,7 +543,7 @@
         <div class="mensagem-feedback" id="mensagemFeedback"></div>
     </div>
 
-    <!-- TELA 4 - PRÊMIO -->
+    <!-- ========== TELA 4 - PRÊMIO (tela de celebração) ========== -->
     <div id="tela4" class="tela">
         <div class="tela4-conteudo">
             <img class="medalha-grande" src="medalha.jpg" alt="medalha de ouro">
@@ -676,18 +552,28 @@
             </div>
             <button class="btn-voltar-inicio" id="btnVoltarInicio">🌻 VOLTAR AO JARDIM 🌻</button>
         </div>
-        <!-- Pássaros voam da direita para a esquerda -->
+        <!-- Elementos animados na tela de prêmio -->
         <div class="passaro-tela4" style="top: 10%; animation-duration: 22s;">🐦</div>
         <div class="passaro-tela4" style="top: 30%; animation-duration: 18s;">🐦</div>
         <div class="passaro-tela4" style="top: 45%; animation-duration: 25s;">🐦</div>
-        <!-- Borboletas voam da esquerda para a direita -->
         <div class="borboleta-tela4" style="top: 20%; animation-duration: 20s;">🦋</div>
         <div class="borboleta-tela4" style="top: 60%; animation-duration: 14s;">🦋</div>
         <div class="borboleta-tela4" style="top: 80%; animation-duration: 16s;">🦋</div>
     </div>
 
     <script>
-        // -------------------- DADOS DAS PALAVRAS (ORDEM SOLICITADA) --------------------
+        // ========== JAVASCRIPT - LÓGICA DO JOGO ==========
+        // Aqui começa a parte de programação que faz o jogo funcionar.
+
+        // --- DADOS DAS PALAVRAS (lista de todas as palavras do jogo) ---
+        // Cada palavra tem:
+        // - nome: como ela é escrita (em letras maiúsculas, sem acento)
+        // - acentos: como ela aparece com acento (para exibir na mensagem de acerto)
+        // - letras: quantidade de letras
+        // - borda: cor da borda do card
+        // - emoji: desenho que aparece no card depois de descoberto
+        // - texto: dica para a criança
+        // - cenario: imagem ou emoji que aparece quando a criança revela
         const palavras = [
             { nome: "AR", acentos: "AR", letras: 2, borda: "#87CEEB", emoji: "💨", texto: "QUANDO VOCÊ RESPIRA, EU ESTOU LÁ, INVISÍVEL. TODOS PRECISAM DE MIM PARA VIVER, MAS QUANDO FICO POLUÍDO, A SAÚDE FICA FRACA. QUEM SOU EU?", cenario: "💨" },
             { nome: "SOL", acentos: "SOL", letras: 3, borda: "#FFD700", emoji: "☀️", texto: "BRILHO FORTE NO CÉU DURANTE O DIA. MEU CALOR AQUECE A TERRA E AJUDA AS PLANTAS A CRESCEREM. QUANDO VOU EMBORA, A NOITE CHEGA. QUEM SOU EU?", cenario: "☀️" },
@@ -700,12 +586,13 @@
             { nome: "RECICLAR", acentos: "RECICLAR", letras: 8, borda: "#32CD32", emoji: "♻️", texto: "SEPARO O LIXO POR CORES. AZUL PARA PAPEL, VERMELHO PARA PLÁSTICO, VERDE PARA VIDRO E AMARELO PARA METAL. ASSIM PODEMOS TRANSFORMAR O LIXO EM UMA COISA NOVA. COMO SE CHAMA ESSA ATITUDE?", cenario: "♻️" }
         ];
 
-        // -------------------- ESTADO DO JOGO --------------------
+        // --- ESTADO DO JOGO (variáveis que guardam o progresso) ---
+        // palavrasCompletadas: lista das palavras que a criança já acertou (vem salva no navegador)
         let palavrasCompletadas = JSON.parse(localStorage.getItem('jardimProgresso')) || [];
-        let palavraAtual = null;
-        let imagemRevelada = false;
+        let palavraAtual = null;          // palavra que está sendo jogada no momento
+        let imagemRevelada = false;       // se a imagem secreta já foi revelada
 
-        // -------------------- ELEMENTOS DA TELA --------------------
+        // --- ELEMENTOS DA TELA (referências para os botões e áreas do HTML) ---
         const tela1 = document.getElementById('tela1');
         const tela2 = document.getElementById('tela2');
         const tela3 = document.getElementById('tela3');
@@ -726,101 +613,112 @@
         const btnIrPremioTela2 = document.getElementById('btnIrPremioTela2');
         const btnVoltarInicio = document.getElementById('btnVoltarInicio');
 
-        // -------------------- SONS (PLACEHOLDERS) --------------------
+        // --- FUNÇÕES DE SOM (simuladas - apenas mostram no console, mas podem ser substituídas por arquivos de áudio) ---
         function tocarSomClique() { console.log('🔊 som de clique'); }
         function tocarSomAcerto() { console.log('🔊 som de acerto'); }
         function tocarSomErro()   { console.log('🔊 som de erro'); }
         function tocarMusicaFundo() { console.log('🔊 música de fundo (natureza)'); }
 
-        // -------------------- RENDERIZA OS CARDS (números) --------------------
+        // --- FUNÇÃO QUE CRIA OS CARDS NA TELA 2 ---
+        // Esta função é chamada sempre que o jogo inicia ou quando uma palavra é descoberta.
         function renderizarCards() {
-            cardsGrid.innerHTML = '';
-            palavras.forEach((palavra, index) => {
-                const card = document.createElement('div');
+            cardsGrid.innerHTML = '';                // Limpa a grade atual
+            palavras.forEach((palavra, index) => {   // Percorre todas as palavras
+                const card = document.createElement('div');  // Cria um card (div)
                 card.className = 'card';
-                if (palavrasCompletadas.includes(palavra.nome)) {
-                    card.classList.add('completado');
+                const completado = palavrasCompletadas.includes(palavra.nome);
+                if (completado) {
+                    card.classList.add('completado');       // Adiciona a marcação de completado (check)
+                    // Se já foi descoberto, mostra o emoji correspondente (ex: 💨, ☀️)
+                    card.innerHTML = palavra.emoji;
+                } else {
+                    // Se não foi descoberto, mostra o número do card (1, 2, 3...)
+                    card.innerHTML = (index + 1).toString();
                 }
-                card.style.borderColor = palavra.borda;
-                card.style.color = palavra.borda;
-                card.dataset.indice = index;
-                card.innerHTML = (index + 1).toString();
-                card.addEventListener('click', () => abrirPalavra(index));
-                cardsGrid.appendChild(card);
+                card.style.borderColor = palavra.borda;     // Define a cor da borda
+                card.style.color = palavra.borda;           // Define a cor do texto
+                card.dataset.indice = index;                // Guarda o índice da palavra no card
+                card.addEventListener('click', () => abrirPalavra(index)); // Quando clicar, abre a tela da palavra
+                cardsGrid.appendChild(card);                // Adiciona o card à grade
             });
         }
 
-        // -------------------- MOSTRA O PLACEHOLDER OU A IMAGEM (SE REVELADA) --------------------
+        // --- FUNÇÃO QUE MOSTRA A IMAGEM NA TELA 3 (se revelada) ---
         function atualizarImagem() {
             if (imagemRevelada) {
-                cenarioPalavraDiv.innerHTML = palavraAtual.cenario;
+                cenarioPalavraDiv.innerHTML = palavraAtual.cenario;   // Mostra o emoji da palavra
             } else {
                 cenarioPalavraDiv.innerHTML = '<div class="imagem-placeholder">❓ IMAGEM SECRETA</div>';
             }
         }
 
-        // -------------------- RESETA A TELA 3 PARA UM NOVO DESAFIO --------------------
+        // --- RESETA A TELA 3 PARA UM NOVO DESAFIO ---
         function resetarTela3() {
             const inputs = document.querySelectorAll('.letra-input');
             inputs.forEach(input => {
-                input.value = '';
-                input.style.borderColor = '#4682B4';
+                input.value = '';                         // Limpa o valor de cada campo
+                input.style.borderColor = '#4682B4';      // Volta a cor da borda para azul
             });
-            mensagemFeedback.textContent = '';
-            imagemRevelada = false;
-            atualizarImagem();
+            mensagemFeedback.textContent = '';            // Limpa mensagem de feedback
+            imagemRevelada = false;                       // A imagem volta a ser secreta
+            atualizarImagem();                            // Atualiza a imagem (mostra placeholder)
         }
 
-        // -------------------- CRIA OS CAMPOS DE LETRA COM BACKSPACE --------------------
+        // --- CRIA OS CAMPOS DE LETRA (caixinhas para digitar) ---
         function criarCamposLetra() {
-            areaDigitacao.innerHTML = '';
+            areaDigitacao.innerHTML = '';                 // Limpa a área
             for (let i = 0; i < palavraAtual.letras; i++) {
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.className = 'letra-input';
-                input.maxLength = 1;
+                input.maxLength = 1;                      // Só permite uma letra por campo
                 input.dataset.pos = i;
                 input.setAttribute('aria-label', `Letra ${i+1}`);
                 
+                // Quando o usuário digitar uma letra:
                 input.addEventListener('input', function(e) {
-                    // Converte para maiúscula e remove não-letras
+                    // Converte para maiúscula e remove qualquer caractere que não seja letra A-Z
                     this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
                     if (this.value.length === 1) {
+                        // Se digitou uma letra, avança automaticamente para o próximo campo
                         const next = this.parentElement.querySelector(`[data-pos="${i+1}"]`);
                         if (next) next.focus();
                     }
                 });
                 
+                // Quando o usuário apertar a tecla "Backspace" (apagar):
                 input.addEventListener('keydown', function(e) {
                     if (e.key === 'Backspace') {
                         e.preventDefault();
                         if (this.value === '') {
+                            // Se o campo já está vazio, volta para o campo anterior e apaga
                             const prev = this.parentElement.querySelector(`[data-pos="${i-1}"]`);
                             if (prev) {
                                 prev.value = '';
                                 prev.focus();
                             }
                         } else {
-                            this.value = '';
+                            this.value = '';               // Apaga a letra do campo atual
                         }
                     }
                 });
                 
-                areaDigitacao.appendChild(input);
+                areaDigitacao.appendChild(input);          // Adiciona o campo à área de digitação
             }
         }
 
-        // -------------------- ABRE A TELA DE UMA PALAVRA --------------------
+        // --- ABRE A TELA DE UMA PALAVRA (quando a criança clica em um card) ---
         function abrirPalavra(indice) {
-            palavraAtual = palavras[indice];
-            textoExplicativo.textContent = palavraAtual.texto;
-            criarCamposLetra();
-            resetarTela3();
+            palavraAtual = palavras[indice];                 // Define qual palavra será jogada
+            textoExplicativo.textContent = palavraAtual.texto;  // Mostra a dica
+            criarCamposLetra();                              // Cria os campos para digitar
+            resetarTela3();                                  // Limpa possíveis dados antigos
+            // Esconde todas as telas e mostra apenas a tela 3
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela3.classList.add('ativa');
         }
 
-        // -------------------- REVELAR IMAGEM (botão) --------------------
+        // --- BOTÃO "REVELAR IMAGEM" ---
         btnRevelarImagem.addEventListener('click', () => {
             if (!palavraAtual) return;
             if (!imagemRevelada) {
@@ -830,7 +728,7 @@
             }
         });
 
-        // -------------------- VERIFICA A PALAVRA DIGITADA --------------------
+        // --- BOTÃO "VERIFICAR" (checa se a palavra está correta) ---
         btnVerificar.addEventListener('click', () => {
             if (!palavraAtual) return;
 
@@ -848,18 +746,20 @@
                 return;
             }
 
+            // Compara a palavra digitada com a palavra correta
             if (palavraDigitada === palavraAtual.nome) {
                 mensagemFeedback.textContent = `🎉 PARABÉNS! A PALAVRA É ${palavraAtual.acentos}!`;
                 inputs.forEach(input => input.style.borderColor = 'green');
                 tocarSomAcerto();
 
+                // Se ainda não estava marcada como completada, adiciona à lista e salva
                 if (!palavrasCompletadas.includes(palavraAtual.nome)) {
                     palavrasCompletadas.push(palavraAtual.nome);
                     localStorage.setItem('jardimProgresso', JSON.stringify(palavrasCompletadas));
-                    renderizarCards();
+                    renderizarCards();   // Atualiza os cards (o número vira emoji)
                 }
 
-                // Verifica se todas as palavras foram completadas e atualiza o botão na tela2
+                // Se todas as palavras foram descobertas, mostra o botão de prêmio
                 if (palavrasCompletadas.length === palavras.length) {
                     premioTela2Container.style.display = 'block';
                 }
@@ -867,13 +767,14 @@
                 mensagemFeedback.textContent = '😓 TENTE NOVAMENTE';
                 inputs.forEach(input => input.style.borderColor = 'red');
                 tocarSomErro();
+                // Depois de 1 segundo, volta a borda para azul
                 setTimeout(() => {
                     inputs.forEach(input => input.style.borderColor = '#4682B4');
                 }, 1000);
             }
         });
 
-        // -------------------- TENTAR NOVAMENTE --------------------
+        // --- BOTÃO "TENTAR NOVAMENTE" (limpa os campos) ---
         btnTentar.addEventListener('click', () => {
             document.querySelectorAll('.letra-input').forEach(input => {
                 input.value = '';
@@ -883,58 +784,59 @@
             document.querySelector('.letra-input')?.focus();
         });
 
-        // -------------------- VOLTAR PARA OS CARDS --------------------
+        // --- BOTÃO "VOLTAR AS CARTAS" (retorna à tela 2) ---
         btnVoltarCards.addEventListener('click', () => {
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela2.classList.add('ativa');
         });
 
-        // -------------------- JOGAR --------------------
+        // --- BOTÃO "JOGAR" NA TELA INICIAL ---
         btnJogar.addEventListener('click', () => {
             tocarSomClique();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela2.classList.add('ativa');
         });
 
-        // -------------------- RESET --------------------
+        // --- BOTÃO "LIMPAR" (reset completo do jogo) ---
         btnReset.addEventListener('click', () => {
             tocarSomClique();
-            palavrasCompletadas = [];
-            localStorage.removeItem('jardimProgresso');
-            renderizarCards();
-            premioTela2Container.style.display = 'none';
+            palavrasCompletadas = [];                       // Limpa a lista de palavras descobertas
+            localStorage.removeItem('jardimProgresso');    // Apaga do armazenamento local
+            renderizarCards();                              // Recria os cards (todos como números)
+            premioTela2Container.style.display = 'none';    // Esconde o botão de prêmio
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
-            tela1.classList.add('ativa');
+            tela1.classList.add('ativa');                   // Volta para a tela inicial
         });
 
-        // -------------------- VOLTAR AO JARDIM --------------------
+        // --- BOTÃO "VOLTAR AO JARDIM" (da tela 2) ---
         btnVoltarJardim.addEventListener('click', () => {
             tocarSomClique();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela1.classList.add('ativa');
         });
 
-        // -------------------- IR PARA TELA DE PRÊMIO --------------------
+        // --- BOTÃO QUE LEVA AO PRÊMIO (aparece na tela 2) ---
         btnIrPremioTela2.addEventListener('click', () => {
             tocarSomClique();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela4.classList.add('ativa');
         });
 
-        // -------------------- VOLTAR DO PRÊMIO AO INÍCIO --------------------
+        // --- BOTÃO "VOLTAR AO JARDIM" NA TELA DE PRÊMIO ---
         btnVoltarInicio.addEventListener('click', () => {
             tocarSomClique();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela1.classList.add('ativa');
         });
 
-        // -------------------- INICIALIZAÇÃO --------------------
-        renderizarCards();
-        // Se já tiver completado todas, mostra o botão na tela2 desde o início
+        // --- INICIALIZAÇÃO (quando a página carrega) ---
+        renderizarCards();   // Cria os cards com base no progresso salvo
+        // Se já tiver todas as palavras completadas, mostra o botão de prêmio
         if (palavrasCompletadas.length === palavras.length) {
             premioTela2Container.style.display = 'block';
         }
-        tocarMusicaFundo();
+        tocarMusicaFundo();   // Inicia a música de fundo (simulada)
+        // Adiciona som de clique para todos os botões
         document.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', tocarSomClique);
         });
