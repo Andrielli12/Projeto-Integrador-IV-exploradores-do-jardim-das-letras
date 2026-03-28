@@ -25,11 +25,11 @@
             align-items: center;
             background: linear-gradient(145deg, #87CEEB 0%, #98FB98 100%);
             overflow-y: auto;
-            overflow-x: hidden;
+            overflow-x: hidden;    /* impede rolagem horizontal em qualquer dispositivo */
         }
 
         /* Força todos os textos principais a ficarem em letras maiúsculas */
-        body, .instrucao, .btn, .botao, .card, .texto-explicativo,
+        body, .caixa-instrucao, .btn, .botao, .card, .texto-explicativo,
         .mensagem-feedback, .medalha, .btn-jardim, .btn-voltar-jardim,
         .cenario-palavra, .letra-input, .tela4-conteudo, .welcome-text,
         .footer-text, .premio-btn {
@@ -191,6 +191,32 @@
             transform: scale(1.05);         /* aumenta um pouco ao passar o mouse */
         }
 
+        /* ========== CAIXA PADRÃO PARA INSTRUÇÕES ========== */
+        /* Esta classe dá o mesmo visual da caixa de boas‑vindas (fundo amarelo, borda dourada) */
+        .caixa-instrucao {
+            background: rgba(255, 255, 200, 0.9);
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5e2e;
+            border: 3px solid #FFD700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            display: inline-block;
+            max-width: 80%;
+            margin: 20px auto;
+        }
+
+        /* Para a instrução da tela 1, que precisa ficar posicionada de forma absoluta */
+        .caixa-instrucao.absoluta {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+        }
+
         /* TELA 2 – CARDS (as cartas com números ou emojis) */
         #tela2 {
             background: #2e8b57;
@@ -271,6 +297,22 @@
             justify-content: center;
             padding: 60px 20px;
         }
+        /* Instrução que agora fica acima da imagem secreta */
+        .instrucao-meio {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            margin: 20px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 80%;
+        }
+        .instrucao-meio span {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
         .cenario-palavra {
             font-size: 8rem;
             text-align: center;
@@ -296,22 +338,6 @@
             max-width: 600px;
             margin: 20px;
             text-align: center;
-        }
-        /* Instrução que fica entre a imagem e o texto da palavra */
-        .instrucao-meio {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-size: 1.5rem;
-            margin: 20px;
-            border: 3px solid #FFD700;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            text-align: center;
-            max-width: 80%;
-        }
-        .instrucao-meio span {
-            font-size: 2rem;
-            margin-right: 10px;
         }
         /* Container flex para os campos de letra e botão de dica lado a lado */
         .area-dica-wrapper {
@@ -549,6 +575,8 @@
         @media (max-width: 600px) {
             .welcome-text { font-size: 1.2rem; padding: 8px 16px; white-space: normal; width: 90%; top: 3%; }
             .footer-text { font-size: 0.7rem; bottom: 5px; padding: 4px 8px; width: 95%; }
+            .caixa-instrucao { font-size: 1rem; padding: 8px 16px; }
+            .caixa-instrucao.absoluta { top: 10%; }
             .instrucao-meio { font-size: 1rem; padding: 8px 12px; }
             .instrucao-meio span { font-size: 1.5rem; }
             .arvore { font-size: 4rem; }
@@ -587,8 +615,10 @@
     <!-- TELA 1 - JARDIM (tela inicial) -->
     <div id="tela1" class="tela ativa">
         <div class="jardim">
+            <!-- Texto de boas‑vindas -->
             <div class="welcome-text">🌱 BEM-VINDOS AO JOGO JARDIM DAS LETRAS 🌱</div>
-            <div class="instrucao" style="position: absolute; top: 15%; left: 50%; transform: translateX(-50%);">
+            <!-- Instrução da tela inicial (com a mesma caixa da boas‑vindas, mas posicionada logo abaixo) -->
+            <div class="caixa-instrucao absoluta">
                 <span>🌻</span> CLIQUE EM "JOGAR" OU EM "LIMPAR" PARA LIMPAR A MEMÓRIA E RECOMEÇAR DO ZERO!
             </div>
             <div class="footer-text">
@@ -618,7 +648,8 @@
     <!-- TELA 2 - CARDS (grade com números e emojis) -->
     <div id="tela2" class="tela">
         <button class="btn-voltar-jardim" id="btnVoltarJardim">🌿 VOLTAR AO JARDIM</button>
-        <div class="instrucao">
+        <!-- Instrução da tela 2 (mesma caixa da boas‑vindas) -->
+        <div class="caixa-instrucao">
             <span>🔍</span> ESCOLHA UM NÚMERO PARA DESCOBRIR A PALAVRA SECRETA!
         </div>
         <div class="cards-grid" id="cardsGrid"></div>
@@ -629,14 +660,14 @@
 
     <!-- TELA 3 - PALAVRA (desafio) -->
     <div id="tela3" class="tela">
+        <!-- Instrução que fica ACIMA da imagem secreta (o texto será alterado dinamicamente) -->
+        <div class="instrucao-meio" id="instrucaoMeio">
+            <span>✏️</span> <!-- conteúdo será preenchido pelo JavaScript -->
+        </div>
+
         <!-- Área da imagem secreta (que pode ser revelada) -->
         <div class="cenario-palavra" id="cenarioPalavra">
             <div class="imagem-placeholder">❓ IMAGEM SECRETA</div>
-        </div>
-        
-        <!-- Instrução que fica entre a imagem e o texto da palavra (o texto será alterado dinamicamente) -->
-        <div class="instrucao-meio" id="instrucaoMeio">
-            <span>✏️</span> <!-- conteúdo será preenchido pelo JavaScript -->
         </div>
 
         <!-- Texto da dica (pergunta) -->
