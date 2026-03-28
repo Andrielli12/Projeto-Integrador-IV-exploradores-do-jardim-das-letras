@@ -80,13 +80,16 @@ No jogo, a criança encontra um jardim encantado com **9 palavras** relacionadas
 
 ## 📂 Estrutura do Projeto
 
+```text
 /
-├── index.html # Arquivo principal (HTML + CSS + JS)
-├── medalha.jpg # Imagem da medalha (pode ser trocada)
-└── fundo da tela inicial.jpg # Imagem de fundo da tela inicial
+├── index.html                 # Arquivo principal (HTML + CSS + JS)
+├── medalha.jpg                # Imagem da medalha (pode ser trocada)
+└── fundo da tela inicial.jpg  # Imagem de fundo da tela inicial
 
 
-> As imagens podem ser substituídas por outros arquivos locais ou links externos.
+**Observações sobre imagens:**  
+- O jogo utiliza as imagens `medalha.jpg` e `fundo da tela inicial.jpg`.  
+- Você pode substituí-las por outros arquivos locais ou até mesmo usar links externos, ajustando os caminhos no código.
 
 ---
 
