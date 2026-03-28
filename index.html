@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Exploradores do Jardim das Letras</title>
     <style>
-        /* RESET E ESTILOS GLOBAIS */
+        /* ========== ESTILOS GLOBAIS (CSS) ========== */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +22,15 @@
             overflow: hidden;
         }
 
-        /* TELAS */
+        /* ========== TODOS OS TEXTOS VISÍVEIS SERÃO MINÚSCULAS ========== */
+        body, .instrucao, .btn, .botao, .card, .texto-explicativo,
+        .mensagem-feedback, .medalha, .btn-jardim, .btn-voltar-jardim,
+        .cenario-palavra, .letra-input, .tela4-conteudo, .welcome-text,
+        .footer-text, .premio-btn {
+            text-transform: lowercase;
+        }
+
+        /* ========== TELAS ========== */
         .tela {
             position: absolute;
             width: 100vw;
@@ -38,26 +46,7 @@
             display: flex;
         }
 
-        /* INSTRUÇÕES */
-        .instrucao {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-size: 1.5rem;
-            margin: 10px;
-            border: 3px solid #FFD700;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            text-align: center;
-            max-width: 80%;
-            z-index: 20;
-        }
-
-        .instrucao span {
-            font-size: 2rem;
-            margin-right: 10px;
-        }
-
-        /* TELA 1 - JARDIM ENCANTADO */
+        /* ========== TELA 1 - JARDIM ENCANTADO ========== */
         #tela1 {
             background-image: url('fundo da tela inicial.jpg');
             background-size: cover;
@@ -71,6 +60,44 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+        }
+
+        .welcome-text {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 200, 0.9);
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5e2e;
+            border: 3px solid #FFD700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            white-space: nowrap;
+            z-index: 25;
+        }
+
+        .footer-text {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.6);
+            color: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 20px;
+            width: fit-content;
+            margin: 0 auto;
+            backdrop-filter: blur(4px);
+            z-index: 30;
+            pointer-events: none;
+            font-weight: normal;
+            letter-spacing: 0.5px;
         }
 
         .arvore {
@@ -95,18 +122,9 @@
             animation: balancar 2.5s infinite alternate;
         }
 
-        .flor1 {
-            left: 20%;
-            animation-delay: 0s;
-        }
-        .flor2 {
-            left: 45%;
-            animation-delay: 0.5s;
-        }
-        .flor3 {
-            left: 70%;
-            animation-delay: 1s;
-        }
+        .flor1 { left: 20%; animation-delay: 0s; }
+        .flor2 { left: 45%; animation-delay: 0.5s; }
+        .flor3 { left: 70%; animation-delay: 1s; }
 
         .nuvem {
             position: absolute;
@@ -151,21 +169,9 @@
             animation: voarBorboleta 8s infinite alternate ease-in-out;
         }
 
-        .borboleta1 {
-            top: 40%;
-            left: 10%;
-            animation-duration: 10s;
-        }
-        .borboleta2 {
-            top: 60%;
-            left: 30%;
-            animation-duration: 12s;
-        }
-        .borboleta3 {
-            top: 50%;
-            left: 70%;
-            animation-duration: 9s;
-        }
+        .borboleta1 { top: 40%; left: 10%; animation-duration: 10s; }
+        .borboleta2 { top: 60%; left: 30%; animation-duration: 12s; }
+        .borboleta3 { top: 50%; left: 70%; animation-duration: 9s; }
 
         .botoes-jardim {
             position: absolute;
@@ -203,7 +209,7 @@
             transform: scale(1.05);
         }
 
-        /* TELA 2 - CARDS */
+        /* ========== TELA 2 - CARDS ========== */
         #tela2 {
             background: #2e8b57;
             justify-content: space-around;
@@ -228,6 +234,7 @@
             transition: transform 0.3s;
             position: relative;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .card:hover {
@@ -254,7 +261,7 @@
             cursor: pointer;
         }
 
-        /* TELA 3 - PALAVRA */
+        /* ========== TELA 3 - PALAVRA ========== */
         #tela3 {
             background: #f0e68c;
             justify-content: space-around;
@@ -264,6 +271,19 @@
             font-size: 8rem;
             text-align: center;
             margin: 20px;
+            min-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imagem-placeholder {
+            font-size: 1.8rem;
+            padding: 15px 30px;
+            border-radius: 20px;
+            background-color: #f4a460;
+            color: white;
+            display: inline-block;
         }
 
         .texto-explicativo {
@@ -292,7 +312,7 @@
             border: 3px solid #4682B4;
             border-radius: 10px;
             background: white;
-            text-transform: uppercase;
+            text-transform: lowercase;
         }
 
         .botoes-palavra {
@@ -311,15 +331,9 @@
             transition: 0.3s;
         }
 
-        .botao.verificar {
-            background: #32CD32;
-        }
-        .botao.tentar {
-            background: #FFA500;
-        }
-        .botao.voltar {
-            background: #1E90FF;
-        }
+        .botao.verificar { background: #32CD32; }
+        .botao.tentar    { background: #FFA500; }
+        .botao.voltar    { background: #1E90FF; }
 
         .botao:hover {
             filter: brightness(0.9);
@@ -333,22 +347,105 @@
             border-radius: 10px;
         }
 
-        .medalha {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: gold;
-            padding: 40px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 2rem;
-            border: 5px solid orange;
-            box-shadow: 0 0 50px gold;
-            z-index: 100;
+        .premio-btn {
+            background-color: #FFD700;
+            color: #8B4513;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .premio-btn:hover {
+            transform: scale(1.05);
+            background-color: #FFC107;
         }
 
-        /*animações */
+        /* ========== TELA 4 - PRÊMIO ========== */
+        #tela4 {
+            background: linear-gradient(145deg, #87CEEB 0%, #98FB98 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tela4-conteudo {
+            background: rgba(255,255,240,0.9);
+            border-radius: 50px;
+            padding: 40px;
+            max-width: 90%;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 5px solid gold;
+        }
+
+        .medalha-grande {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px gold);
+        }
+
+        .mensagem-premio {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            line-height: 1.4;
+            color: #2c5e2e;
+        }
+
+        .btn-voltar-inicio {
+            background: #32CD32;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-voltar-inicio:hover {
+            transform: scale(1.05);
+            background: #228B22;
+        }
+
+        /* Pássaros na tela4: voam da direita para a esquerda */
+        .passaro-tela4 {
+            position: absolute;
+            font-size: 2.5rem;
+            pointer-events: none;
+            animation: voarDireitaEsquerda linear infinite;
+            z-index: 1;
+        }
+
+        /* Borboletas na tela4: voam da esquerda para a direita */
+        .borboleta-tela4 {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: voarEsquerdaDireita 12s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes voarDireitaEsquerda {
+            from { left: 105%; }
+            to { left: -5%; }
+        }
+
+        @keyframes voarEsquerdaDireita {
+            0% { transform: translate(0,0) rotate(0deg); left: -5%; }
+            25% { transform: translate(40px, -15px) rotate(5deg); }
+            50% { transform: translate(80px, 10px) rotate(-3deg); }
+            75% { transform: translate(120px, -5px) rotate(2deg); }
+            100% { transform: translate(160px, 20px) rotate(0deg); left: 105%; }
+        }
+
+        /* ========== ANIMAÇÕES GERAIS ========== */
         @keyframes balancar {
             0% { transform: rotate(0deg); }
             50% { transform: rotate(3deg); }
@@ -379,8 +476,40 @@
             100% { transform: scale(1); }
         }
 
-        /* RESPONSIVIDADE PARA CELULAR */
+        /* ========== INSTRUÇÕES (balões amarelos) ========== */
+        .instrucao {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            margin: 10px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 80%;
+            z-index: 20;
+        }
+
+        .instrucao span {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        /* ========== RESPONSIVIDADE ========== */
         @media (max-width: 600px) {
+            .welcome-text {
+                font-size: 1.2rem;
+                padding: 8px 16px;
+                white-space: normal;
+                width: 90%;
+                top: 3%;
+            }
+            .footer-text {
+                font-size: 0.7rem;
+                bottom: 5px;
+                padding: 4px 8px;
+                width: 95%;
+            }
             .instrucao {
                 font-size: 1rem;
                 padding: 8px 12px;
@@ -388,8 +517,6 @@
             .instrucao span {
                 font-size: 1.5rem;
             }
-
-            /* Jardim */
             .arvore {
                 font-size: 4rem;
             }
@@ -413,14 +540,12 @@
                 font-size: 1.5rem;
                 border-width: 3px;
             }
-
-            /* Cards */
             .cards-grid {
                 gap: 10px;
             }
             .card {
                 padding: 10px;
-                font-size: 3rem;
+                font-size: 2rem;
             }
             .card.completado::after {
                 font-size: 1.5rem;
@@ -429,10 +554,12 @@
                 font-size: 1.2rem;
                 padding: 6px 12px;
             }
-
-            /* Tela palavra */
             .cenario-palavra {
                 font-size: 5rem;
+            }
+            .imagem-placeholder {
+                font-size: 1rem;
+                padding: 8px 16px;
             }
             .texto-explicativo {
                 font-size: 1.2rem;
@@ -454,24 +581,39 @@
             .mensagem-feedback {
                 font-size: 1.2rem;
             }
-
-            /* Medalha */
-            .medalha {
-                padding: 20px;
+            .premio-btn {
+                font-size: 1rem;
+                padding: 10px 18px;
+            }
+            .medalha-grande {
+                width: 120px;
+            }
+            .mensagem-premio {
                 font-size: 1.2rem;
-                border-width: 3px;
+            }
+            .btn-voltar-inicio {
+                padding: 10px 20px;
+                font-size: 1.2rem;
+            }
+            .passaro-tela4, .borboleta-tela4 {
+                font-size: 1.8rem;
             }
         }
     </style>
-    <!-- Fonte Google -->
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- TELA 1 - JARDIM -->
     <div id="tela1" class="tela ativa">
         <div class="jardim">
-            <div class="instrucao" style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%);">
-                <span>🌻</span> Clique em JOGAR para começar ou em RESET para recomeçar do zero!
+            <div class="welcome-text">
+                🌱 bem-vindos ao jogo jardim das letras 🌱
+            </div>
+            <div class="instrucao" style="position: absolute; top: 15%; left: 50%; transform: translateX(-50%);">
+                <span>🌻</span> clique em "jogar" ou em "limpar" para limpar a memória do computador e recomeçar do zero!
+            </div>
+            <div class="footer-text">
+                recurso educacional aberto &lt;rea&gt; desenvolvido como produto educacional para o projeto integrador do curso de licenciatura em pedagogia da universidade virtual do estado de são paulo &lt;univesp&gt; - 2026
             </div>
             <div class="arvore esquerda">🌳</div>
             <div class="arvore direita">🌳</div>
@@ -486,62 +628,85 @@
             <div class="borboleta borboleta2">🦋</div>
             <div class="borboleta borboleta3">🦋</div>
             <div class="botoes-jardim">
-                <button class="btn-jardim btn-jogar" id="btnJogar">JOGAR</button>
-                <button class="btn-jardim btn-reset" id="btnReset">RESET</button>
+                <button class="btn-jardim btn-jogar" id="btnJogar">jogar</button>
+                <button class="btn-jardim btn-reset" id="btnReset">limpar</button>
             </div>
         </div>
     </div>
 
     <!-- TELA 2 - CARDS -->
     <div id="tela2" class="tela">
-        <button class="btn-voltar-jardim" id="btnVoltarJardim">🌿 Voltar ao Jardim</button>
+        <button class="btn-voltar-jardim" id="btnVoltarJardim">🌿 voltar ao jardim</button>
         <div class="instrucao">
-            <span>🔍</span> Escolha um card para descobrir a palavra secreta!
+            <span>🔍</span> escolha um número para descobrir a palavra secreta!
         </div>
         <div class="cards-grid" id="cardsGrid"></div>
     </div>
 
-    <!-- TELA 3 - PALAVRA (dinâmica) -->
+    <!-- TELA 3 - PALAVRA -->
     <div id="tela3" class="tela">
         <div class="instrucao">
-            <span>✏️</span> Leia a dica e digite a palavra nos quadrados. Depois clique em VERIFICAR!
+            <span>✏️</span> leia a dica e digite a palavra nos quadrados. depois clique em verificar!
         </div>
-        <div class="cenario-palavra" id="cenarioPalavra">🌳</div>
+        <div class="cenario-palavra" id="cenarioPalavra">
+            <div class="imagem-placeholder">❓ imagem secreta</div>
+        </div>
         <div class="texto-explicativo" id="textoExplicativo"></div>
         <div class="area-digitacao" id="areaDigitacao"></div>
         <div class="botoes-palavra">
-            <button class="botao verificar" id="btnVerificar">VERIFICAR</button>
-            <button class="botao tentar" id="btnTentar">TENTAR NOVAMENTE</button>
-            <button class="botao voltar" id="btnVoltarCards">VOLTAR AOS CARDS</button>
+            <button class="botao verificar" id="btnVerificar">verificar</button>
+            <button class="botao tentar" id="btnTentar">tentar novamente</button>
+            <button class="botao voltar" id="btnVoltarCards">voltar as cartas</button>
         </div>
         <div class="mensagem-feedback" id="mensagemFeedback"></div>
+        <div id="premioButtonContainer" style="display: none;">
+            <button class="premio-btn" id="btnIrPremio">🎉 parabéns você acertou todas as palavras! clique para receber seu prêmio. 🎉</button>
+        </div>
     </div>
 
-    <!-- MEDALHA (invisível inicialmente) -->
-    <div id="medalha" class="medalha" style="display: none;">🏅 Explorador do Jardim das Letras</div>
+    <!-- TELA 4 - PRÊMIO -->
+    <div id="tela4" class="tela">
+        <div class="tela4-conteudo">
+            <img class="medalha-grande" src="medalha.jpg" alt="medalha de ouro">
+            <div class="mensagem-premio">
+                parabéns! você encontrou todas as palavras do nosso jardim e aprendeu mais sobre o meio ambiente. agora você é um grande explorador do jardim das letras!
+            </div>
+            <button class="btn-voltar-inicio" id="btnVoltarInicio">🌻 voltar ao jardim 🌻</button>
+        </div>
+        <!-- Pássaros voam da direita para a esquerda -->
+        <div class="passaro-tela4" style="top: 10%; animation-duration: 22s;">🐦</div>
+        <div class="passaro-tela4" style="top: 30%; animation-duration: 18s;">🐦</div>
+        <div class="passaro-tela4" style="top: 45%; animation-duration: 25s;">🐦</div>
+        <!-- Borboletas voam da esquerda para a direita -->
+        <div class="borboleta-tela4" style="top: 20%; animation-duration: 20s;">🦋</div>
+        <div class="borboleta-tela4" style="top: 60%; animation-duration: 14s;">🦋</div>
+        <div class="borboleta-tela4" style="top: 80%; animation-duration: 16s;">🦋</div>
+    </div>
 
     <script>
-        // DADOS DAS PALAVRAS (placeholders)
+        // -------------------- DADOS DAS PALAVRAS (ORDEM SOLICITADA) --------------------
         const palavras = [
+            { nome: "AR", acentos: "AR", letras: 2, borda: "#87CEEB", emoji: "💨", texto: "Quando você respira pelo nariz, eu estou lá, invisível. Todos precisam de mim para viver, mas quando fico cheio de poluição, a saúde de todos fica fraca. Quem sou eu?", cenario: "💨" },
             { nome: "SOL", acentos: "SOL", letras: 3, borda: "#FFD700", emoji: "☀️", texto: "Brilho forte no céu durante o dia. Meu calor aquece a Terra e ajuda as plantas a crescerem. Quando vou embora, a noite chega. Quem sou eu?", cenario: "☀️" },
-            { nome: "FLOR", acentos: "FLOR", letras: 4, borda: "#FF69B4", emoji: "🌸", texto: "Tenho pétalas coloridas e um cheiro gostoso. Moro em jardins e campos. As abelhas vêm me visitar. Preciso de água e sol para não murchar. Quem sou eu?", cenario: "🌸" },
             { nome: "AGUA", acentos: "ÁGUA", letras: 4, borda: "#00BFFF", emoji: "💧", texto: "Caio do céu quando chove. Corro nos rios e nas cachoeiras. As plantas bebem de mim para crescer. Os animais e as pessoas também precisam de mim para viver. Quem sou eu?", cenario: "💧" },
-            { nome: "FRUTA", acentos: "FRUTA", letras: 5, borda: "#FF4500", emoji: "🍎", texto: "Venho da natureza e posso ser colhida para comer. Sou doce e saudável. Maçã, banana e laranja são exemplos de mim. Quem sou eu?", cenario: "🍎" },
-            { nome: "ARVORE", acentos: "ÁRVORE", letras: 6, borda: "#228B22", emoji: "🌳", texto: "Sou bem grande e vivo muitos anos. Minhas raízes me seguram firme na terra. Meus galhos são cheios de folhas e fazem uma sombra fresquinha. Os pássaros gostam de fazer seus ninhos nos meus galhos. Quem sou eu?", cenario: "🌳" },
-            { nome: "ABELHA", acentos: "ABELHA", letras: 6, borda: "#FFD700", emoji: "🐝", texto: "Sou pequena, tenho asas e listras amarelas e pretas. Sou conhecida pelo meu zumbido. Visito as flores para pegar néctar, que vira mel, e também ajudo as flores a se transformarem em frutos. Quem sou eu?", cenario: "🐝" },
+            { nome: "FLOR", acentos: "FLOR", letras: 4, borda: "#FF69B4", emoji: "🌸", texto: "Posso ter pétalas de várias cores. Moro em jardins e campos. Preciso de água e sol para não murchar. Quem sou eu?", cenario: "🌸" },
+            { nome: "ARVORE", acentos: "ÁRVORE", letras: 6, borda: "#228B22", emoji: "🌳", texto: "Posso ser grande ou pequena. Minhas raízes me seguram firme na terra. Meus galhos têm folhas e podem fazer uma sombra fresquinha. Quem sou eu?", cenario: "🌳" },
             { nome: "PASSARO", acentos: "PÁSSARO", letras: 7, borda: "#FFA500", emoji: "🐦", texto: "Tenho penas, asas e bico. Gosto de voar livre e fazer ninhos nas árvores. Canto bem cedo pela manhã. Quem sou eu?", cenario: "🐦" },
-            { nome: "SEMENTE", acentos: "SEMENTE", letras: 7, borda: "#8B4513", emoji: "🌱", texto: "Pareço um grão pequeno, mas guardo uma planta dentro de mim. Se me plantarem na terra, me regarem e o sol me aquecer, eu vou brotar e virar uma planta grande. Quem sou eu?", cenario: "🌱" },
+            { nome: "ABELHA", acentos: "ABELHA", letras: 6, borda: "#FFD700", emoji: "🐝", texto: "Sou pequena, tenho asas e listras pretas e amarelas. Sou muito conhecida pelo meu zumbido. Quem sou eu?", cenario: "🐝" },
+            { nome: "SEMENTE", acentos: "SEMENTE", letras: 7, borda: "#8B4513", emoji: "🌱", texto: "Pareço um grão pequeno, mas guardo uma planta dentro de mim. Se me plantarem na terra, me regarem e o sol me aquecer, eu vou brotar e virar uma planta. Quem sou eu?", cenario: "🌱" },
             { nome: "RECICLAR", acentos: "RECICLAR", letras: 8, borda: "#32CD32", emoji: "♻️", texto: "Separo o lixo por cores. Azul para papel, vermelho para plástico, verde para vidro e amarelo para metal. Assim podemos transformar o lixo em uma coisa nova. Como se chama essa atitude?", cenario: "♻️" }
         ];
 
-        // Estado do jogo
+        // -------------------- ESTADO DO JOGO --------------------
         let palavrasCompletadas = JSON.parse(localStorage.getItem('jardimProgresso')) || [];
         let palavraAtual = null;
+        let imagemRevelada = false;
 
-        // Elementos DOM
+        // -------------------- ELEMENTOS DA TELA --------------------
         const tela1 = document.getElementById('tela1');
         const tela2 = document.getElementById('tela2');
         const tela3 = document.getElementById('tela3');
+        const tela4 = document.getElementById('tela4');
         const cardsGrid = document.getElementById('cardsGrid');
         const btnJogar = document.getElementById('btnJogar');
         const btnReset = document.getElementById('btnReset');
@@ -549,27 +714,21 @@
         const btnVoltarCards = document.getElementById('btnVoltarCards');
         const btnVerificar = document.getElementById('btnVerificar');
         const btnTentar = document.getElementById('btnTentar');
-        const cenarioPalavra = document.getElementById('cenarioPalavra');
+        const cenarioPalavraDiv = document.getElementById('cenarioPalavra');
         const textoExplicativo = document.getElementById('textoExplicativo');
         const areaDigitacao = document.getElementById('areaDigitacao');
         const mensagemFeedback = document.getElementById('mensagemFeedback');
-        const medalha = document.getElementById('medalha');
+        const premioButtonContainer = document.getElementById('premioButtonContainer');
+        const btnIrPremio = document.getElementById('btnIrPremio');
+        const btnVoltarInicio = document.getElementById('btnVoltarInicio');
 
-        // Sons (placeholders - por enquanto apenas funções vazias)
-        function tocarSomClique() {
-            console.log('🔊 som de clique');
-        }
-        function tocarSomAcerto() {
-            console.log('🔊 som de acerto');
-        }
-        function tocarSomErro() {
-            console.log('🔊 som de erro');
-        }
-        function tocarMusicaFundo() {
-            console.log('🔊 música de fundo (natureza)');
-        }
+        // -------------------- SONS (PLACEHOLDERS) --------------------
+        function tocarSomClique() { console.log('🔊 som de clique'); }
+        function tocarSomAcerto() { console.log('🔊 som de acerto'); }
+        function tocarSomErro()   { console.log('🔊 som de erro'); }
+        function tocarMusicaFundo() { console.log('🔊 música de fundo (natureza)'); }
 
-        // Inicializar cards
+        // -------------------- RENDERIZA OS CARDS (números) --------------------
         function renderizarCards() {
             cardsGrid.innerHTML = '';
             palavras.forEach((palavra, index) => {
@@ -579,19 +738,37 @@
                     card.classList.add('completado');
                 }
                 card.style.borderColor = palavra.borda;
+                card.style.color = palavra.borda;
                 card.dataset.indice = index;
-                card.innerHTML = palavra.emoji;
+                card.innerHTML = (index + 1).toString();
                 card.addEventListener('click', () => abrirPalavra(index));
                 cardsGrid.appendChild(card);
             });
         }
 
-        // Abrir tela da palavra
-        function abrirPalavra(indice) {
-            palavraAtual = palavras[indice];
-            cenarioPalavra.textContent = palavraAtual.cenario;
-            textoExplicativo.textContent = palavraAtual.texto;
-            // Criar inputs
+        // -------------------- MOSTRA O PLACEHOLDER OU A IMAGEM --------------------
+        function atualizarImagem() {
+            if (imagemRevelada) {
+                cenarioPalavraDiv.innerHTML = palavraAtual.cenario;
+            } else {
+                cenarioPalavraDiv.innerHTML = '<div class="imagem-placeholder">❓ imagem secreta</div>';
+            }
+        }
+
+        // -------------------- RESETA A TELA 3 PARA UM NOVO DESAFIO --------------------
+        function resetarTela3() {
+            const inputs = document.querySelectorAll('.letra-input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.style.borderColor = '#4682B4';
+            });
+            mensagemFeedback.textContent = '';
+            imagemRevelada = false;
+            atualizarImagem();
+        }
+
+        // -------------------- CRIA OS CAMPOS DE LETRA COM BACKSPACE --------------------
+        function criarCamposLetra() {
             areaDigitacao.innerHTML = '';
             for (let i = 0; i < palavraAtual.letras; i++) {
                 const input = document.createElement('input');
@@ -600,53 +777,84 @@
                 input.maxLength = 1;
                 input.dataset.pos = i;
                 input.setAttribute('aria-label', `Letra ${i+1}`);
+                
                 input.addEventListener('input', function(e) {
-                    this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+                    this.value = this.value.toLowerCase().replace(/[^a-z]/g, '');
                     if (this.value.length === 1) {
                         const next = this.parentElement.querySelector(`[data-pos="${i+1}"]`);
                         if (next) next.focus();
                     }
                 });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace') {
+                        e.preventDefault();
+                        if (this.value === '') {
+                            const prev = this.parentElement.querySelector(`[data-pos="${i-1}"]`);
+                            if (prev) {
+                                prev.value = '';
+                                prev.focus();
+                            }
+                        } else {
+                            this.value = '';
+                        }
+                    }
+                });
+                
                 areaDigitacao.appendChild(input);
             }
-            mensagemFeedback.textContent = '';
-            // Mudar para tela 3
+        }
+
+        // -------------------- ABRE A TELA DE UMA PALAVRA --------------------
+        function abrirPalavra(indice) {
+            palavraAtual = palavras[indice];
+            textoExplicativo.textContent = palavraAtual.texto;
+            criarCamposLetra();
+            resetarTela3();
+            premioButtonContainer.style.display = 'none';
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela3.classList.add('ativa');
         }
 
-        // Verificar palavra
+        // -------------------- VERIFICA A PALAVRA DIGITADA --------------------
         btnVerificar.addEventListener('click', () => {
             if (!palavraAtual) return;
+
             const inputs = document.querySelectorAll('.letra-input');
             let preenchidos = true;
             let palavraDigitada = '';
+
             inputs.forEach(input => {
                 if (input.value === '') preenchidos = false;
                 palavraDigitada += input.value;
             });
+
             if (!preenchidos) {
-                mensagemFeedback.textContent = '❌ PREENCHA TODAS AS LETRAS';
+                mensagemFeedback.textContent = '❌ preencha todas as letras';
                 return;
             }
-            if (palavraDigitada === palavraAtual.nome) {
-                // Acerto
-                mensagemFeedback.textContent = `🎉 PARABÉNS! A palavra é ${palavraAtual.acentos}!`;
+
+            if (palavraDigitada === palavraAtual.nome.toLowerCase()) {
+                mensagemFeedback.textContent = `🎉 parabéns! a palavra é ${palavraAtual.acentos.toLowerCase()}!`;
                 inputs.forEach(input => input.style.borderColor = 'green');
                 tocarSomAcerto();
-                // Marcar como completada se não estiver
+
+                if (!imagemRevelada) {
+                    imagemRevelada = true;
+                    atualizarImagem();
+                }
+
                 if (!palavrasCompletadas.includes(palavraAtual.nome)) {
                     palavrasCompletadas.push(palavraAtual.nome);
                     localStorage.setItem('jardimProgresso', JSON.stringify(palavrasCompletadas));
                     renderizarCards();
                 }
-                // Verificar se completou todas
+
                 if (palavrasCompletadas.length === palavras.length) {
-                    mostrarMedalha();
+                    premioButtonContainer.style.display = 'block';
                 }
             } else {
-                // Erro
-                mensagemFeedback.textContent = '😓 TENTE NOVAMENTE';
+                mensagemFeedback.textContent = '😓 tente novamente';
                 inputs.forEach(input => input.style.borderColor = 'red');
                 tocarSomErro();
                 setTimeout(() => {
@@ -655,7 +863,7 @@
             }
         });
 
-        // Tentar novamente (limpar inputs)
+        // -------------------- TENTAR NOVAMENTE --------------------
         btnTentar.addEventListener('click', () => {
             document.querySelectorAll('.letra-input').forEach(input => {
                 input.value = '';
@@ -663,57 +871,62 @@
             });
             mensagemFeedback.textContent = '';
             document.querySelector('.letra-input')?.focus();
+            if (!imagemRevelada) {
+                atualizarImagem();
+            }
         });
 
-        // Voltar para cards
+        // -------------------- VOLTAR PARA OS CARDS --------------------
         btnVoltarCards.addEventListener('click', () => {
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela2.classList.add('ativa');
         });
 
-        // Botão jogar
+        // -------------------- JOGAR --------------------
         btnJogar.addEventListener('click', () => {
             tocarSomClique();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela2.classList.add('ativa');
         });
 
-        // Botão reset: limpa progresso e volta para tela 1
+        // -------------------- RESET --------------------
         btnReset.addEventListener('click', () => {
             tocarSomClique();
             palavrasCompletadas = [];
             localStorage.removeItem('jardimProgresso');
-            renderizarCards(); // atualiza os cards (todos sem check)
-            // Se estiver em qualquer tela, volta para tela 1
+            renderizarCards();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela1.classList.add('ativa');
+            premioButtonContainer.style.display = 'none';
         });
 
-        // Botão voltar ao jardim
+        // -------------------- VOLTAR AO JARDIM --------------------
         btnVoltarJardim.addEventListener('click', () => {
             tocarSomClique();
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
             tela1.classList.add('ativa');
         });
 
-        // Mostrar medalha
-        function mostrarMedalha() {
-            medalha.style.display = 'block';
-            setTimeout(() => {
-                medalha.style.display = 'none';
-            }, 5000);
-        }
+        // -------------------- IR PARA TELA DE PRÊMIO --------------------
+        btnIrPremio.addEventListener('click', () => {
+            tocarSomClique();
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+            tela4.classList.add('ativa');
+        });
 
-        // Inicializar
+        // -------------------- VOLTAR DO PRÊMIO AO INÍCIO --------------------
+        btnVoltarInicio.addEventListener('click', () => {
+            tocarSomClique();
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+            tela1.classList.add('ativa');
+        });
+
+        // -------------------- INICIALIZAÇÃO --------------------
         renderizarCards();
-        // Se já tiver completado todas, mostrar medalha ao iniciar?
         if (palavrasCompletadas.length === palavras.length) {
-            mostrarMedalha();
+            premioButtonContainer.style.display = 'block';
         }
-        // Tocar música de fundo (placeholders)
         tocarMusicaFundo();
-
-        // Adicionar evento de clique para todos os botões (som)
         document.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', tocarSomClique);
         });
