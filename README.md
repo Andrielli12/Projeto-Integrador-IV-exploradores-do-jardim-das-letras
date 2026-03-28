@@ -79,7 +79,7 @@ No jogo, a criança encontra um jardim encantado com **9 palavras** relacionadas
 
 ## 📂 Estrutura do Projeto
 
-'''text
+```text
 /
 ├── index.html                 # Arquivo principal (HTML + CSS + JS)
 ├── medalha.jpg                # Imagem da medalha (pode ser trocada)
